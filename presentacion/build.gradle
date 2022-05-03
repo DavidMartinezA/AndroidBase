@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'jacoco'
 }
 
 android {
@@ -21,6 +22,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+            testCoverageEnabled true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -40,6 +45,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // Dependencias de modulos
+    implementation project(path: ':dominio')
 }
 
 // tarea para los reportes de analisis de codigo
@@ -47,14 +55,28 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTes
 
     def moduleDominio = project(':dominio')
 
-    def directoriesToCoverage = layout.files("$moduleDominio.buildDir/tmp/kotlin-classes/debug/com/example")
+    def directoriesToCoverage = layout.files(
+            "$moduleDominio.buildDir/tmp/kotlin-classes/debug/com/dominio",
+            "$buildDir/tmp/kotlin-classes/debug/com/androidbase",
+    )
 
-    def mainSources = layout.files("$moduleDominio.projectDir/src/main/java/com/example")
+    def mainSources = layout.files(
+            "$moduleDominio.projectDir/src/main/java/com/dominio",
+            "$projectDir/src/main/java/com/presentacion",
+    )
 
-    def executionFileForUnitTestInModule = "$moduleDominio.buildDir/outputs/Unit_Test_code_coverage/debugUnitTest/testDebugUnitTest.exec"
+    def executionFilesFromConnectedAndroidTest = fileTree(
+            dir: "$buildDir", includes:
+            ["outputs/code_coverage/debugAndroidTest/connected/**/coverage.ec"],
+    )
 
+    def executionFileForUnitTestInModule =
+            "$moduleDominio.buildDir/outputs/Unit_Test_code_coverage/debugUnitTest/testDebugUnitTest.exec"
 
-    def executionFiles = layout.files(executionFileForUnitTestInModule)
+    def executionFiles = layout.files(
+            executionFilesFromConnectedAndroidTest,
+            executionFileForUnitTestInModule,
+    )
 
     sourceDirectories.setFrom(files([mainSources]))
     classDirectories.setFrom(files([directoriesToCoverage.asFileTree]))
