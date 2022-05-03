@@ -13,4 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "AndroidBase"
-include ':app'
+include ':presentacion'
+include ':dominio'
