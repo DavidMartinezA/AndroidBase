@@ -11,11 +11,9 @@ class ServicoPelicula(var repositorioPelicula: RepositorioPelicula) {
 
     fun guardarListaPeliculas(listaPelicula: List<Pelicula>) {
         repositorioPelicula.guardarListaPeliculas(listaPelicula)
-
     }
 
     fun peliculaPorId(id: Int): Pelicula {
         return repositorioPelicula.peliculaPorId(id)
-
     }
 }
