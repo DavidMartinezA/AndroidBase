@@ -1,4 +1,4 @@
-package com.dominio.modelo
+package com.dominio.peliculas.modelo
 
 data class Pelicula(
 
