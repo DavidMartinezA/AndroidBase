@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidBase</string>
+    <string name="api_key">a7f82b29e3df86d84ef8969c0cfeba1a</string>
+
+    // api service https://developers.themoviedb.org/3/trending/get-trending
+    https://api.themoviedb.org/3/trending/movie/day?api_key=a7f82b29e3df86d84ef8969c0cfeba1a
 </resources>
