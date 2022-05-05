@@ -3,7 +3,7 @@ package com.dominio.peliculas.servicio
 import com.dominio.peliculas.modelo.Pelicula
 import com.dominio.peliculas.repositorio.RepositorioPelicula
 
-class ServicoPelicula(var repositorioPelicula: RepositorioPelicula) {
+class ServicoPelicula(private var repositorioPelicula: RepositorioPelicula) {
 
     fun consultarListaPeliculas(): List<Pelicula> {
         return repositorioPelicula.listaPeliculas()
