@@ -1,12 +1,11 @@
 package com.dominio.peliculas.repositorio
 
-import com.dominio.peliculas.modelo.Pelicula
+import com.dominio.peliculas.modelo.PaginadoPeliculas
 
 interface RepositorioPelicula {
 
-    fun peliculaPorId(id: Int): Pelicula
+    suspend fun guardarPaginaPeliculas(paginaPeliculas: PaginadoPeliculas)
 
-    fun guardarListaPeliculas(listaPeliculas: List<Pelicula>)
+    suspend fun obtenerPaginaPeliculas(): PaginadoPeliculas
 
-    fun listaPeliculas(): List<Pelicula>
 }

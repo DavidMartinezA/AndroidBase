@@ -1,19 +1,16 @@
 package com.dominio.peliculas.servicio
 
-import com.dominio.peliculas.modelo.Pelicula
+import com.dominio.peliculas.modelo.PaginadoPeliculas
 import com.dominio.peliculas.repositorio.RepositorioPelicula
 
 class ServicoPelicula(private var repositorioPelicula: RepositorioPelicula) {
 
-    fun consultarListaPeliculas(): List<Pelicula> {
-        return repositorioPelicula.listaPeliculas()
+    suspend fun consultarPaginaPeliculas(): PaginadoPeliculas {
+        return repositorioPelicula.obtenerPaginaPeliculas()
     }
 
-    fun guardarListaPeliculas(listaPelicula: List<Pelicula>) {
-        repositorioPelicula.guardarListaPeliculas(listaPelicula)
+    suspend fun guardarPaginaPeliculas(paginaPelicula: PaginadoPeliculas) {
+        repositorioPelicula.guardarPaginaPeliculas(paginaPelicula)
     }
 
-    fun peliculaPorId(id: Int): Pelicula {
-        return repositorioPelicula.peliculaPorId(id)
-    }
 }

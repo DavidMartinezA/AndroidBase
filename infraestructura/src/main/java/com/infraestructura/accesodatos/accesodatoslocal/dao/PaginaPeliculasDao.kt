@@ -8,8 +8,8 @@ import com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos.Entidad
 interface PaginaPeliculasDao {
 
     @Query("SELECT * FROM EntidadBaseDatosPelicula")
-    suspend fun obtenerPaginaPeliculas(): EntidadBaseDatosPelicula
+    suspend fun obtener(): EntidadBaseDatosPelicula
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertarPaginaPeliculas(entidadDatosUsuario: EntidadBaseDatosPelicula)
+    suspend fun insertar(entidadDatosUsuario: EntidadBaseDatosPelicula)
 }
