@@ -1,8 +1,10 @@
 package com.dominio.peliculas.servicio
 
+import com.dominio.peliculas.modelo.PaginadoPeliculas
 import com.dominio.peliculas.modelo.Pelicula
 import com.dominio.peliculas.repositorio.RepositorioPelicula
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -23,7 +25,11 @@ class ServicoPeliculaTest {
 
     private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url",
         8.55F, "2022", "pelicula colombiana")
-    private val listaPeliculas: ArrayList<Pelicula> = arrayListOf(pelicula)
+    private var pagina: Int? = 1
+    private var resultadoPeliculas: ArrayList<Pelicula>? = arrayListOf(pelicula)
+    private var paginasTotales: Int? = 100
+    private var resultadoTotal: Int? = 1000
+    private val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
 
     @Before
     fun before() {
@@ -31,68 +37,29 @@ class ServicoPeliculaTest {
     }
 
     @Test
-    fun consultarListaPeliculas_parametrosCorrectos_retornaListaUsuarios() {
+    fun consultarPaginaPeliculas_parametrosCorrectos_retornaPaginaPeliculas() = runTest {
 
         //Arrange
-        Mockito.`when`(repositorioPeliculas.listaPeliculas()).thenReturn(listaPeliculas)
+        Mockito.`when`(repositorioPeliculas.obtenerPaginaPeliculas()).thenReturn(paginado)
 
         //Act
-        val consultaDeListaPeliculas = ServicoPelicula(repositorioPeliculas).consultarListaPeliculas()
+        val consultarPaginaPeliculas = ServicoPelicula(repositorioPeliculas).consultarPaginaPeliculas()
 
         //Assert
-        assertEquals(consultaDeListaPeliculas, listaPeliculas)
+        assertEquals(consultarPaginaPeliculas, paginado)
 
     }
 
     @Test
-    fun consultarListaPeliculas_listaVacia_retornaListaUsuariosVacia() {
-
-        //Arrange
-        val listaPeliculasDos: ArrayList<Pelicula> = arrayListOf()
-        Mockito.`when`(repositorioPeliculas.listaPeliculas()).thenReturn(listaPeliculasDos)
-
-        //Act
-        val consultaDeListaPeliculas = ServicoPelicula(repositorioPeliculas).consultarListaPeliculas()
-
-        //Assert
-        assertEquals(consultaDeListaPeliculas, listaPeliculasDos)
-
-    }
-
-    @Test
-    fun guardarListaPeliculas_listaPeliculasCorrecta_listaGuardada() {
+    fun guardarPaginaPeliculas_paginaPeliculasCorrecta_paginaGuardada() = runTest {
 
         //Arrange
         //Act
-        ServicoPelicula(repositorioPeliculas).guardarListaPeliculas(listaPeliculas)
+        ServicoPelicula(repositorioPeliculas).guardarPaginaPeliculas(paginado)
 
         //Assert
-        verify(repositorioPeliculas, times(1)).guardarListaPeliculas(listaPeliculas)
-    }
-
-    @Test
-    fun guardarListaPeliculas_listaPeliculasVacia_listaGuardada() {
-
-        //Arrange
-        val listaPeliculasTres: ArrayList<Pelicula> = arrayListOf()
-        //Act
-        ServicoPelicula(repositorioPeliculas).guardarListaPeliculas(listaPeliculasTres)
-
-        //Assert
-        verify(repositorioPeliculas, times(1)).guardarListaPeliculas(listaPeliculasTres)
+        verify(repositorioPeliculas, times(1)).guardarPaginaPeliculas(paginado)
     }
 
 
-    @Test
-    fun peliculaPorId_idCorrecto_usuarioPorId() {
-
-        //Arrange
-        Mockito.`when`(repositorioPeliculas.peliculaPorId(1)).thenReturn(pelicula)
-
-        //Act
-        val peliculaPorId = ServicoPelicula(repositorioPeliculas).peliculaPorId(1)
-
-        //Assert
-        assertEquals(peliculaPorId, pelicula)
-    }
 }
