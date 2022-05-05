@@ -2,8 +2,9 @@ package com.dominio.peliculas.servicio
 
 import com.dominio.peliculas.modelo.PaginadoPeliculas
 import com.dominio.peliculas.repositorio.RepositorioPelicula
+import javax.inject.Inject
 
-class ServicoPelicula(private var repositorioPelicula: RepositorioPelicula) {
+class ServicoPelicula @Inject constructor(private var repositorioPelicula: RepositorioPelicula) {
 
     suspend fun consultarPaginaPeliculas(): PaginadoPeliculas {
         return repositorioPelicula.obtenerPaginaPeliculas()

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'jacoco'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -34,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -48,6 +52,11 @@ dependencies {
 
     // Dependencias de modulos
     implementation project(path: ':dominio')
+    implementation project(path: ':infraestructura')
+    //Inyeccion dependencias
+    implementation "com.google.dagger:hilt-android:2.41"
+    kapt "com.google.dagger:hilt-android-compiler:2.41"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
 }
 
 // tarea para los reportes de analisis de codigo
