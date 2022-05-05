@@ -7,7 +7,7 @@ import org.junit.Test
 
 class PaginadoPeliculasTest {
 
-    private val pelicula: Pelicula? = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
+    private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
     private var page: Int? = 1
     private var results: ArrayList<Pelicula>? = ArrayList()
     private var total_pages: Int? = 100
@@ -17,7 +17,7 @@ class PaginadoPeliculasTest {
     fun initValidacionDeNulo_parametrosCorrectos_paginadoPeliculasPage() {
 
         //Arrange
-        results?.add(pelicula!!)
+        results?.add(pelicula)
 
         //Act
         val paginado = PaginadoPeliculas(page, results, total_pages, total_results)
@@ -33,7 +33,7 @@ class PaginadoPeliculasTest {
     fun initValidacionDeNulo_parametroPageNulo_lanzarExcepcionNulo() {
 
         //Arrange
-        results?.add(pelicula!!)
+        results?.add(pelicula)
         page = null
 
         //Act
