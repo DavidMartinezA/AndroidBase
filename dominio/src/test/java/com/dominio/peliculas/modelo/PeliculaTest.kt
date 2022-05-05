@@ -8,12 +8,12 @@ import org.junit.Test
 class PeliculaTest {
 
     var id: Int? = 1
-    var original_language: String? = "español"
-    var original_title: String? = "Encanto"
-    var poster_path: String? = "url"
-    var vote_average: Float? = 8.55F
-    var release_date: String? = "2022"
-    val overview: String? = "pelicula colombiana"
+    var idioma: String? = "español"
+    var titulo: String? = "Encanto"
+    var imagenUrl: String? = "url"
+    var calificacion: Float? = 8.55F
+    var fechaLanzamiento: String? = "2022"
+    var descripcion: String? = "pelicula colombiana"
 
 
     @Test
@@ -21,16 +21,16 @@ class PeliculaTest {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(id, original_language, original_title, poster_path, vote_average, release_date, overview)
+        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
         assertEquals(pelicula.id, id)
-        assertEquals(pelicula.original_language, original_language)
-        assertEquals(pelicula.original_title, original_title)
-        assertEquals(pelicula.poster_path, poster_path)
-        assertEquals(pelicula.vote_average, vote_average)
-        assertEquals(pelicula.release_date, release_date)
-        assertEquals(pelicula.overview, overview)
+        assertEquals(pelicula.idioma, idioma)
+        assertEquals(pelicula.titulo, titulo)
+        assertEquals(pelicula.imagenUrl, imagenUrl)
+        assertEquals(pelicula.calificacion, calificacion)
+        assertEquals(pelicula.fechaLanzamiento, fechaLanzamiento)
+        assertEquals(pelicula.descripcion, descripcion)
     }
 
     @Test
@@ -41,7 +41,7 @@ class PeliculaTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, original_language, original_title, poster_path, vote_average, release_date, overview)
+            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -49,11 +49,11 @@ class PeliculaTest {
     fun initValidacionDeNulo_parametroOriginalLenguajeNulo_LanzarExcepcionNulo() {
 
         //Arrange
-        original_language = null
+        idioma = null
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, original_language, original_title, poster_path, vote_average, release_date, overview)
+            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -61,11 +61,11 @@ class PeliculaTest {
     fun initValidacionDeNulo_parametroOriginalTitleNulo_LanzarExcepcionNulo() {
 
         //Arrange
-        original_title = null
+        titulo = null
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, original_language, original_title, poster_path, vote_average, release_date, overview)
+            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -73,11 +73,11 @@ class PeliculaTest {
     fun initValidacionDeNulo_parametroPosterPathNulo_LanzarExcepcionNulo() {
 
         //Arrange
-        poster_path = null
+        imagenUrl = null
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, original_language, original_title, poster_path, vote_average, release_date, overview)
+            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -85,11 +85,11 @@ class PeliculaTest {
     fun initValidacionDeNulo_parametroVoteAverageNulo_LanzarExcepcionNulo() {
 
         //Arrange
-        vote_average = null
+        calificacion = null
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, original_language, original_title, poster_path, vote_average, release_date, overview)
+            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -97,11 +97,11 @@ class PeliculaTest {
     fun initValidacionDeNulo_parametroReleaseDateNulo_LanzarExcepcionNulo() {
 
         //Arrange
-        release_date = null
+        fechaLanzamiento = null
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, original_language, original_title, poster_path, vote_average, release_date, overview)
+            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -109,11 +109,11 @@ class PeliculaTest {
     fun initValidacionDeNulo_parametroOverviewNulo_LanzarExcepcionNulo() {
 
         //Arrange
-        release_date = null
+        descripcion = null
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, original_language, original_title, poster_path, vote_average, release_date, overview)
+            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 }

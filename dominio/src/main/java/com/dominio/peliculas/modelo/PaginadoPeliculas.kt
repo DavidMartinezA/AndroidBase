@@ -1,18 +1,22 @@
 package com.dominio.peliculas.modelo
 
 import com.dominio.peliculas.excepcion.ExcepcionNulo
+import com.google.gson.annotations.SerializedName
 
 data class PaginadoPeliculas(
-    val page: Int?,
-    val results: ArrayList<Pelicula>?,
-    val total_pages: Int?,
-    val total_results: Int?,
-) {
+
+    @SerializedName("page") var pagina: Int?,
+    @SerializedName("results") var resultadoPeliculas: ArrayList<Pelicula>?,
+    @SerializedName("total_pages") var paginasTotales: Int?,
+    @SerializedName("total_results") var resultadoTotal: Int?,
+
+    ) {
 
     init {
         if (validacionNulo()) throw ExcepcionNulo()
     }
 
-    private fun validacionNulo(): Boolean = page == null || results == null || total_pages == null || total_results == null
+    private fun validacionNulo(): Boolean = pagina == null || resultadoPeliculas == null ||
+            paginasTotales == null || resultadoTotal == null
 
 }
