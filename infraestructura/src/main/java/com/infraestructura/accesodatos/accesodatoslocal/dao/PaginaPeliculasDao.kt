@@ -13,5 +13,5 @@ interface PaginaPeliculasDao {
     suspend fun obtener(): EntidadBaseDatosPelicula
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertar(entidadDatosUsuario: EntidadBaseDatosPelicula)
+    suspend fun insertar(entidadBaseDatosPelicula: EntidadBaseDatosPelicula)
 }
