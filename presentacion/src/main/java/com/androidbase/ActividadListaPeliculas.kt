@@ -15,6 +15,7 @@ class ActividadListaPeliculas : AppCompatActivity() {
         binding = ActividadListaPeliculasBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+
 }
 
 
