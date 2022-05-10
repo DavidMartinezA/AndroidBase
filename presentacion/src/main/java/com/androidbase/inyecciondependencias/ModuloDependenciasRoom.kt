@@ -16,7 +16,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class ModuloDependencias {
+abstract class ModuloDependenciasRoom {
 
     companion object {
 
@@ -25,7 +25,7 @@ abstract class ModuloDependencias {
         fun proveerBaseDatos(@ApplicationContext contexto: Context): BaseDatosPaginaPeliculas {
             return Room.databaseBuilder(
                 contexto, BaseDatosPaginaPeliculas::class.java,
-                R.string.nombre_base_datos.toString())
+                contexto.resources.getString(R.string.nombre_base_datos))
                 .build()
         }
     }
