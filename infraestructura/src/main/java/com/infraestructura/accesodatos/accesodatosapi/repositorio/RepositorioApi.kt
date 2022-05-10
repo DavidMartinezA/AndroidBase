@@ -6,6 +6,7 @@ import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.Traductor
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 
@@ -18,8 +19,9 @@ class RepositorioApi @Inject constructor(
     private val traductor = TraductorPagina()
 
     suspend fun obtenerPaginaPeliculas(): PaginadoPeliculas = withContext(this.dispatchers) {
+
         val paginaPeliculas = baseDatosPaginaPeliculas.paginaPeliculasdao().obtener()
-        if (paginaPeliculas.resultadoPeliculas.isNullOrEmpty()) {// todo  condicionar que actualice api cada 24 horas
+        if (paginaPeliculas.diaRegistro != LocalDateTime.now().dayOfWeek.value) {
             //Log.i("repos","Api Data")
             val servicioApiPagina = servicioApi.obtenerpagina()
             baseDatosPaginaPeliculas.paginaPeliculasdao().insertar(traductor.desdeDominioABaseDatos(servicioApiPagina))
