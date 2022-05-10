@@ -2,6 +2,7 @@ package com.dominio.peliculas.modelo
 
 import com.dominio.peliculas.excepcion.ExcepcionNulo
 import com.google.gson.annotations.SerializedName
+import java.time.LocalDateTime
 
 data class PaginadoPeliculas(
 
@@ -9,8 +10,8 @@ data class PaginadoPeliculas(
     @SerializedName("results") var resultadoPeliculas: ArrayList<Pelicula>?,
     @SerializedName("total_pages") var paginasTotales: Int?,
     @SerializedName("total_results") var resultadoTotal: Int?,
-
-    ) {
+    var diaRegistro: Int = LocalDateTime.now().dayOfWeek.value,
+) {
 
     init {
         if (validacionNulo()) throw ExcepcionNulo()

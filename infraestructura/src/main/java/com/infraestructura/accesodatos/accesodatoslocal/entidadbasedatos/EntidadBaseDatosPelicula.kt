@@ -12,4 +12,5 @@ class EntidadBaseDatosPelicula(
     var resultadoPeliculas: ArrayList<Pelicula>?,
     var paginasTotales: Int?,
     var resultadoTotal: Int?,
+    var diaRegistro: Int,
 )

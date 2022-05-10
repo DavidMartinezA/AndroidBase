@@ -10,14 +10,16 @@ class TraductorPagina {
             pagina = paginadoPeliculas.pagina,
             resultadoPeliculas = paginadoPeliculas.resultadoPeliculas,
             paginasTotales = paginadoPeliculas.paginasTotales,
-            resultadoTotal = paginadoPeliculas.resultadoTotal)
+            resultadoTotal = paginadoPeliculas.resultadoTotal,
+            diaRegistro = paginadoPeliculas.diaRegistro)
     }
 
     fun desdeBaseDatosADominio(entidadBaseDatosPelicula: EntidadBaseDatosPelicula): PaginadoPeliculas {
         return PaginadoPeliculas(entidadBaseDatosPelicula.pagina,
             entidadBaseDatosPelicula.resultadoPeliculas,
             entidadBaseDatosPelicula.paginasTotales,
-            entidadBaseDatosPelicula.resultadoTotal)
+            entidadBaseDatosPelicula.resultadoTotal,
+            entidadBaseDatosPelicula.diaRegistro)
     }
 
 }
