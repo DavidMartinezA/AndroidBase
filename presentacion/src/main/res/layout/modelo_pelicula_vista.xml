@@ -89,7 +89,7 @@
         tools:text="8.7" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_view_post"
+        android:id="@+id/btn_ver_detalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
