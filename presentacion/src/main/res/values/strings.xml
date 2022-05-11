@@ -2,6 +2,12 @@
     <string name="app_name">AndroidBase</string>
     <string name="api_key">a7f82b29e3df86d84ef8969c0cfeba1a</string>
     <string name="nombre_base_datos">base de datos AndroidBase</string>
+    <string name="fecha_de_lanzamiento">Fecha de Lanzamiento:</string>
+    <string name="titulo_pelicula">Pelicula:</string>
+    <string name="titulo_idioma">Idioma:</string>
+    <string name="titulo_votacion">Votacion:</string>
+    <string name="titulo_sipnosis">Sipnosis:</string>
+    <string name="texto_boton_ver">Ver</string>
 
     <!--  api service https://developers.themoviedb.org/3/trending/get-trending
      https://api.themoviedb.org/3/trending/movie/day?api_key=a7f82b29e3df86d84ef8969c0cfeba1a-->
