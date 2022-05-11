@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tituloPeliculaTextView"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:paddingHorizontal="10dp"
+        android:text="@string/titulo_pelicula"
+        app:layout_constraintStart_toEndOf="@+id/cartelPeliculaImageView"
+        app:layout_constraintTop_toTopOf="@+id/cartelPeliculaImageView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textoPeliculaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingHorizontal="10dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tituloPeliculaTextView"
+        app:layout_constraintStart_toEndOf="@+id/tituloPeliculaTextView"
+        app:layout_constraintTop_toTopOf="@+id/tituloPeliculaTextView"
+        tools:text="Encanto" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/cartelPeliculaImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tituloIdiomaTextView"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:paddingHorizontal="10dp"
+        android:text="@string/titulo_idioma"
+        app:layout_constraintStart_toEndOf="@+id/cartelPeliculaImageView"
+        app:layout_constraintTop_toBottomOf="@+id/tituloPeliculaTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textoIdiomaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingHorizontal="10dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tituloIdiomaTextView"
+        app:layout_constraintStart_toEndOf="@+id/tituloIdiomaTextView"
+        app:layout_constraintTop_toTopOf="@+id/tituloIdiomaTextView"
+        tools:text="Español" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tituloVotacionTextView"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:paddingHorizontal="10dp"
+        android:text="@string/titulo_votacion"
+        app:layout_constraintStart_toEndOf="@+id/cartelPeliculaImageView"
+        app:layout_constraintTop_toBottomOf="@+id/tituloIdiomaTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textoVotacionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingHorizontal="10dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tituloVotacionTextView"
+        app:layout_constraintStart_toEndOf="@+id/tituloVotacionTextView"
+        app:layout_constraintTop_toTopOf="@+id/tituloVotacionTextView"
+        tools:text="8.7" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_view_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/transparent"
+        android:text="@string/texto_boton_ver"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
