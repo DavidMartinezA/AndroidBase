@@ -7,9 +7,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.dominio.peliculas.modelo.PaginadoPeliculas
 import com.dominio.peliculas.modelo.Pelicula
 import com.infraestructura.accesodatos.accesodatosapi.repositorio.RepositorioApi
+import com.infraestructura.accesodatos.accesodatosapi.repositorio.RepositorioPeliculas
 import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
 import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.TraductorPagina
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
+import com.infraestructura.accesodatos.accesodatoslocal.repositorio.RepositorioPeliculasRoom
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
@@ -25,18 +27,15 @@ import java.io.InputStreamReader
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
-class RepositorioApiTest {
+class RepositorioPeliculasTest {
 
     private lateinit var servicioMockWeb: MockWebServer
-    private lateinit var repositorio: RepositorioApi
+    private lateinit var repositorioPeliculas: RepositorioPeliculas
     private lateinit var baseDatosEntidades: BaseDatosPaginaPeliculas
-    private lateinit var servicioApi: ServicioApi
+    private lateinit var repositorioApi: RepositorioApi
     private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
-    private var pagina = 1
     private var resultadoPeliculas: ArrayList<Pelicula> = ArrayList()
-    private var paginasTotales = 100
-    private var resultadoTotal = 1000
-    private val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+    private val paginado = PaginadoPeliculas(pagina = 1, resultadoPeliculas, paginasTotales = 100, resultadoTotal = 1000)
 
     @Before
     fun configuracionInicial() {
@@ -52,9 +51,11 @@ class RepositorioApiTest {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        servicioApi = retrofit.create(ServicioApi::class.java)
+        val repositorioRoom = RepositorioPeliculasRoom(baseDatosEntidades)
+        val servicioApi = retrofit.create(ServicioApi::class.java)
+        repositorioApi = RepositorioApi(servicioApi)
 
-        repositorio = RepositorioApi(baseDatosEntidades, servicioApi)
+        repositorioPeliculas = RepositorioPeliculas(repositorioRoom, repositorioApi)
     }
 
     @After
@@ -77,10 +78,9 @@ class RepositorioApiTest {
         resultadoPeliculas.add(pelicula)
         baseDatosEntidades.paginaPeliculasdao().insertar(TraductorPagina().desdeDominioABaseDatos(paginado))
         //Act
-        val respuesta = repositorio.obtenerPaginaPeliculas()
+        val respuesta = repositorioPeliculas.obtenerPaginaPeliculas()
         //Assert
         assertFalse(respuesta.resultadoPeliculas!!.isEmpty())
-
     }
 
     @Test
@@ -90,7 +90,7 @@ class RepositorioApiTest {
         baseDatosEntidades.paginaPeliculasdao().insertar(TraductorPagina().desdeDominioABaseDatos(paginado))
 
         //Act
-        val respuesta = repositorio.obtenerPaginaPeliculas()
+        val respuesta = repositorioPeliculas.obtenerPaginaPeliculas()
 
         //Assert
         assertTrue(respuesta.resultadoPeliculas!!.isEmpty())
@@ -104,7 +104,7 @@ class RepositorioApiTest {
         servicioMockWeb.enqueue(MockResponse().setBody(respuestaApi))
 
         //Act
-        val respuesta = servicioApi.obtenerpagina()
+        val respuesta = repositorioApi.obtenerPaginaPeliculas()
 
         //Assert
         assertEquals(respuesta.pagina, 1)
