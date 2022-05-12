@@ -9,7 +9,6 @@ import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeli
 import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeliculas.Companion.IDIOMA
 import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeliculas.Companion.IMAGEN
 import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeliculas.Companion.TITULO
-import com.infraestructura.accesodatos.accesodatosapi.urlbase.PuntoFinal
 import com.squareup.picasso.Picasso
 
 class ActividadDetallePelicula : AppCompatActivity() {
@@ -33,7 +32,7 @@ class ActividadDetallePelicula : AppCompatActivity() {
         fechaLanzamiento = intent.getStringExtra(FECHA_LANZAMIENTO).toString()
         descripcion = intent.getStringExtra(DESCRIPCION).toString()
 
-        //obtenerImagen()
+        obtenerImagen()
         mostrarInformacionPelicula()
         mostrarDestallePelicula()
 
@@ -44,8 +43,8 @@ class ActividadDetallePelicula : AppCompatActivity() {
         if (imagenUrl.isNotEmpty()) {
             val imagen = binding.cartelPeliculaDetalleImageView
             Picasso.get()
-                .load(PuntoFinal.URL_BASE + "t/p/w50" + imagenUrl)
-                .resize(50, 50)
+                .load("https://image.tmdb.org/t/p/w500$imagenUrl")
+                .resize(50, 80)
                 .centerCrop()
                 .into(imagen)
         }

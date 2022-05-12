@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidbase.R
 import com.androidbase.detallepeliculas.ActividadDetallePelicula
 import com.dominio.peliculas.modelo.Pelicula
+import com.squareup.picasso.Picasso
 
 class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
     RecyclerView.Adapter<AdaptadorListaPeliculas.ViewHolder>() {
@@ -37,12 +38,11 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
             view.findViewById<TextView>(R.id.textoVotacionTextView).text = pelicula.calificacion.toString()
             val imagenUrl = pelicula.imagenUrl
             val imagen = view.findViewById<ImageView>(R.id.cartelPeliculaImageView)
-
-            /*        Picasso.get()
-                        .load(URL_BASE + "t/p/w50" + imagenUrl)
-                        .resize(50, 50)
-                        .centerCrop()
-                        .into(imagen)*/
+            Picasso.get()
+                .load("https://image.tmdb.org/t/p/w500$imagenUrl")
+                .resize(50, 80)
+                .centerCrop()
+                .into(imagen)
 
             view.findViewById<Button>(R.id.btn_ver_detalle).setOnClickListener {
 

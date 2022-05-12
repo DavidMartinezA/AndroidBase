@@ -10,4 +10,3 @@ class PuntoFinal {
     }
 
 }
-// /w200-h200-cc/
