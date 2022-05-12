@@ -14,12 +14,19 @@ class TraductorPagina {
             diaRegistro = paginadoPeliculas.diaRegistro)
     }
 
-    fun desdeBaseDatosADominio(entidadBaseDatosPelicula: EntidadBaseDatosPelicula): PaginadoPeliculas {
-        return PaginadoPeliculas(entidadBaseDatosPelicula.pagina,
-            entidadBaseDatosPelicula.resultadoPeliculas,
-            entidadBaseDatosPelicula.paginasTotales,
-            entidadBaseDatosPelicula.resultadoTotal,
-            entidadBaseDatosPelicula.diaRegistro)
+    fun desdeBaseDatosADominio(listaEntidadBaseDatos: List<EntidadBaseDatosPelicula>): List<PaginadoPeliculas> {
+
+        val listaDominio = ArrayList<PaginadoPeliculas>()
+        listaEntidadBaseDatos.map {
+            val paginaPeliculasDominio = PaginadoPeliculas(it.pagina,
+                it.resultadoPeliculas,
+                it.paginasTotales,
+                it.resultadoTotal,
+                it.diaRegistro)
+
+            listaDominio.add(paginaPeliculasDominio)
+        }
+        return listaDominio
     }
 
 }
