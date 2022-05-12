@@ -54,8 +54,8 @@ class BaseDatosPaginaPeliculasTest {
             paginaPeliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
 
             //Assert
-            assertEquals(resultadoPeliculas, paginaPeliculasDao.obtener().resultadoPeliculas!!)
-            assertEquals(1, paginaPeliculasDao.obtener().resultadoPeliculas!!.size)
+            assertEquals(resultadoPeliculas, paginaPeliculasDao.obtener().last().resultadoPeliculas!!)
+            assertEquals(1, paginaPeliculasDao.obtener().last().resultadoPeliculas!!.size)
         }
     }
 
@@ -71,7 +71,7 @@ class BaseDatosPaginaPeliculasTest {
             paginaPeliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
 
             //Assert
-            assertEquals(resultadoPeliculas, paginaPeliculasDao.obtener().resultadoPeliculas)
+            assertEquals(resultadoPeliculas, paginaPeliculasDao.obtener().last().resultadoPeliculas)
         }
     }
 
@@ -89,7 +89,7 @@ class BaseDatosPaginaPeliculasTest {
             val respuesta = paginaPeliculasDao.obtener()
 
             //Assert
-            assertFalse(respuesta.resultadoPeliculas!!.isEmpty())
+            assertFalse(respuesta.last().resultadoPeliculas!!.isEmpty())
         }
     }
 
@@ -106,7 +106,7 @@ class BaseDatosPaginaPeliculasTest {
             val respuesta = paginaPeliculasDao.obtener()
 
             //Assert
-            assertTrue(respuesta.resultadoPeliculas!!.isEmpty())
+            assertTrue(respuesta.last().resultadoPeliculas!!.isEmpty())
         }
     }
 

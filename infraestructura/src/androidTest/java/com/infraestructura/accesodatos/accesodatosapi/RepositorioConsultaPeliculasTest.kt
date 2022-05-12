@@ -90,7 +90,7 @@ class RepositorioConsultaPeliculasTest {
         baseDatosEntidades.paginaPeliculasdao().insertar(TraductorPagina().desdeDominioABaseDatos(paginado))
 
         //Act
-        val respuesta = repositorioConsultaPeliculas.obtenerPaginaPeliculas()
+        val respuesta = RepositorioPeliculasRoom(baseDatosEntidades).obtenerPaginaPeliculas()
 
         //Assert
         assertTrue(respuesta.last().resultadoPeliculas!!.isEmpty())
