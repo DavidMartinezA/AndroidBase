@@ -41,13 +41,13 @@ class ServicoPeliculaTest {
     fun consultarPaginaPeliculas_parametrosCorrectos_retornaPaginaPeliculas() = runTest {
 
         //Arrange
-        Mockito.`when`(repositorioPeliculas.obtenerPaginaPeliculas()).thenReturn(paginado)
+        Mockito.`when`(repositorioPeliculas.obtenerPaginaPeliculas()).thenReturn(listOf(paginado))
 
         //Act
         val consultarPaginaPeliculas = ServicoPelicula(repositorioPeliculas).consultarPaginaPeliculas()
 
         //Assert
-        assertEquals(consultarPaginaPeliculas, paginado)
+        assertEquals(consultarPaginaPeliculas, listOf(paginado))
 
     }
 

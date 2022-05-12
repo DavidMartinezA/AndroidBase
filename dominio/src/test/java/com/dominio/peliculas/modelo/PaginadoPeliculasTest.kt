@@ -39,7 +39,7 @@ class PaginadoPeliculasTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+            PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
         }
     }
 
@@ -52,7 +52,7 @@ class PaginadoPeliculasTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+            PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
         }
     }
 
@@ -65,7 +65,7 @@ class PaginadoPeliculasTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+            PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
         }
     }
 
@@ -78,7 +78,7 @@ class PaginadoPeliculasTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+            PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
         }
     }
 }

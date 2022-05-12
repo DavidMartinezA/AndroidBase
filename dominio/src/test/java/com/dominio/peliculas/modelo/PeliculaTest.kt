@@ -7,13 +7,13 @@ import org.junit.Test
 
 class PeliculaTest {
 
-    var id: Int? = 1
-    var idioma: String? = "español"
-    var titulo: String? = "Encanto"
-    var imagenUrl: String? = "url"
-    var calificacion: Float? = 8.55F
-    var fechaLanzamiento: String? = "2022"
-    var descripcion: String? = "pelicula colombiana"
+    private var id: Int? = 1
+    private var idioma: String? = "español"
+    private var titulo: String? = "Encanto"
+    private var imagenUrl: String? = "url"
+    private var calificacion: Float? = 8.55F
+    private var fechaLanzamiento: String? = "2022"
+    private var descripcion: String? = "pelicula colombiana"
 
 
     @Test
@@ -41,7 +41,7 @@ class PeliculaTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -53,7 +53,7 @@ class PeliculaTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -65,7 +65,7 @@ class PeliculaTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -77,7 +77,7 @@ class PeliculaTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -89,7 +89,7 @@ class PeliculaTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -101,7 +101,7 @@ class PeliculaTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
@@ -113,7 +113,7 @@ class PeliculaTest {
         //Act
         //Assert
         assertThrows(ExcepcionNulo::class.java) {
-            val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 }
