@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class ServicoPelicula @Inject constructor(private var repositorioPelicula: RepositorioPelicula) {
 
-    suspend fun consultarPaginaPeliculas(): PaginadoPeliculas {
+    suspend fun consultarPaginaPeliculas(): List<PaginadoPeliculas> {
         return repositorioPelicula.obtenerPaginaPeliculas()
     }
 
