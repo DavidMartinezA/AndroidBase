@@ -7,11 +7,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.dominio.peliculas.modelo.PaginadoPeliculas
 import com.dominio.peliculas.modelo.Pelicula
 import com.infraestructura.accesodatos.accesodatosapi.repositorio.RepositorioApi
-import com.infraestructura.accesodatos.accesodatosapi.repositorio.RepositorioPeliculas
 import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
 import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.TraductorPagina
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
 import com.infraestructura.accesodatos.accesodatoslocal.repositorio.RepositorioPeliculasRoom
+import com.infraestructura.accesodatos.compartido.repositorio.RepositorioConsultaPeliculas
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
@@ -27,10 +27,10 @@ import java.io.InputStreamReader
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
-class RepositorioPeliculasTest {
+class RepositorioConsultaPeliculasTest {
 
     private lateinit var servicioMockWeb: MockWebServer
-    private lateinit var repositorioPeliculas: RepositorioPeliculas
+    private lateinit var repositorioConsultaPeliculas: RepositorioConsultaPeliculas
     private lateinit var baseDatosEntidades: BaseDatosPaginaPeliculas
     private lateinit var repositorioApi: RepositorioApi
     private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
@@ -55,7 +55,7 @@ class RepositorioPeliculasTest {
         val servicioApi = retrofit.create(ServicioApi::class.java)
         repositorioApi = RepositorioApi(servicioApi)
 
-        repositorioPeliculas = RepositorioPeliculas(repositorioRoom, repositorioApi)
+        repositorioConsultaPeliculas = RepositorioConsultaPeliculas(repositorioRoom, repositorioApi)
     }
 
     @After
@@ -78,9 +78,9 @@ class RepositorioPeliculasTest {
         resultadoPeliculas.add(pelicula)
         baseDatosEntidades.paginaPeliculasdao().insertar(TraductorPagina().desdeDominioABaseDatos(paginado))
         //Act
-        val respuesta = repositorioPeliculas.obtenerPaginaPeliculas()
+        val respuesta = repositorioConsultaPeliculas.obtenerPaginaPeliculas()
         //Assert
-        assertFalse(respuesta.resultadoPeliculas!!.isEmpty())
+        assertFalse(respuesta.last().resultadoPeliculas!!.isEmpty())
     }
 
     @Test
@@ -90,10 +90,10 @@ class RepositorioPeliculasTest {
         baseDatosEntidades.paginaPeliculasdao().insertar(TraductorPagina().desdeDominioABaseDatos(paginado))
 
         //Act
-        val respuesta = repositorioPeliculas.obtenerPaginaPeliculas()
+        val respuesta = repositorioConsultaPeliculas.obtenerPaginaPeliculas()
 
         //Assert
-        assertTrue(respuesta.resultadoPeliculas!!.isEmpty())
+        assertTrue(respuesta.last().resultadoPeliculas!!.isEmpty())
     }
 
     @Test
