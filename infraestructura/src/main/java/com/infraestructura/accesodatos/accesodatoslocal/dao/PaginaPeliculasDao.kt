@@ -10,7 +10,7 @@ import com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos.Entidad
 interface PaginaPeliculasDao {
 
     @Query("SELECT * FROM EntidadBaseDatosPelicula")
-    suspend fun obtener(): EntidadBaseDatosPelicula
+    suspend fun obtener(): List<EntidadBaseDatosPelicula>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertar(entidadBaseDatosPelicula: EntidadBaseDatosPelicula)

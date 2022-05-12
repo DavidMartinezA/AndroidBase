@@ -9,7 +9,7 @@ import java.lang.reflect.Type
 class ConvertidorDatos {
 
     @TypeConverter
-    fun dePeliculaATexto(list: ArrayList<Pelicula?>?): String? {
+    fun dePeliculaATexto(list: List<Pelicula?>?): String? {
         val gson = Gson()
         return gson.toJson(list)
     }
