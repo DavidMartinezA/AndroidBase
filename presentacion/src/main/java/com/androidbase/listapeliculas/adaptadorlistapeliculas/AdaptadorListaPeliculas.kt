@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidbase.R
 import com.androidbase.detallepeliculas.ActividadDetallePelicula
 import com.dominio.peliculas.modelo.Pelicula
+import com.infraestructura.accesodatos.accesodatosapi.urlbase.PuntoFinal.Companion.GET_TRENDING
 import com.squareup.picasso.Picasso
 
-class AdaptadorListaPeliculas(private var resultadoPeliculas: ArrayList<Pelicula>) :
+class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
     RecyclerView.Adapter<AdaptadorListaPeliculas.ViewHolder>() {
 
     companion object {
@@ -24,7 +25,6 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: ArrayList<Pelicula
         const val FECHA_LANZAMIENTO = "Titulo"
         const val DESCRIPCION = "Titulo"
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -41,13 +41,12 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: ArrayList<Pelicula
             val imagen = view.findViewById<ImageView>(R.id.cartelPeliculaImageView)
 
             Picasso.get()
-                .load("https://developers.themoviedb.org/3/trending/get-trending$imagenUrl")
+                .load(GET_TRENDING + imagenUrl)
                 .resize(50, 50)
                 .centerCrop()
                 .into(imagen)
             view.findViewById<Button>(R.id.btn_ver_detalle).setOnClickListener {
 
-                //Send data and open PostActivity
                 val intent = Intent(view.context, ActividadDetallePelicula::class.java)
                 intent.putExtra(TITULO, pelicula.titulo)
                 intent.putExtra(IDIOMA, pelicula.idioma)
@@ -60,12 +59,10 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: ArrayList<Pelicula
         }
     }
 
-    //Sending the object for views
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(resultadoPeliculas[position])
     }
 
-    //Getting list size
     override fun getItemCount(): Int = resultadoPeliculas.size
 
 }
