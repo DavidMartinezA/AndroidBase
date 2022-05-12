@@ -7,10 +7,10 @@ import java.time.LocalDateTime
 data class PaginadoPeliculas(
 
     @SerializedName("page") var pagina: Int?,
-    @SerializedName("results") var resultadoPeliculas: ArrayList<Pelicula>?,
+    @SerializedName("results") var resultadoPeliculas: List<Pelicula>?,
     @SerializedName("total_pages") var paginasTotales: Int?,
     @SerializedName("total_results") var resultadoTotal: Int?,
-    var diaRegistro: Int = LocalDateTime.now().dayOfWeek.value,
+    var diaRegistro: Int? = LocalDateTime.now().dayOfWeek.value,
 ) {
 
     init {
