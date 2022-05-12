@@ -16,8 +16,9 @@ class RepositorioPeliculasRoom @Inject constructor(baseDatosPaginaPeliculas: Bas
         paginaPeliculasDao.insertar(entidadPaginaPeliculas)
     }
 
-    override suspend fun obtenerPaginaPeliculas(): PaginadoPeliculas {
+    override suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> {
         return traductorPagina.desdeBaseDatosADominio(paginaPeliculasDao.obtener())
+
     }
 
 }

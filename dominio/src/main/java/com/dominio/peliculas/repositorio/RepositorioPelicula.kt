@@ -6,6 +6,6 @@ interface RepositorioPelicula {
 
     suspend fun guardarPaginaPeliculas(paginaPeliculas: PaginadoPeliculas)
 
-    suspend fun obtenerPaginaPeliculas(): PaginadoPeliculas
+    suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas>
 
 }
