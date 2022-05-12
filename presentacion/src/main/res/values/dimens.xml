@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margen_normal">16dp</dimen>
+    <dimen name="margen_chica">10dp</dimen>
     <dimen name="padding_horizontal_normal">10dp</dimen>
     <dimen name="dimension_texto_titulo">24sp</dimen>
+    <dimen name="dimension_texto_chico">12sp</dimen>
 
 </resources>

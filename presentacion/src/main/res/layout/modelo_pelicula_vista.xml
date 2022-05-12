@@ -23,7 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="start"
-        android:ems="13"
+        android:ems="10"
+        android:textSize="@dimen/dimension_texto_chico"
         android:paddingHorizontal="10dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tituloPeliculaTextView"
@@ -33,8 +34,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/cartelPeliculaImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="130dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +101,8 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoVotacionTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

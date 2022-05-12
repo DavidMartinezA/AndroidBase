@@ -11,19 +11,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidbase.R
 import com.androidbase.detallepeliculas.ActividadDetallePelicula
 import com.dominio.peliculas.modelo.Pelicula
-import com.infraestructura.accesodatos.accesodatosapi.urlbase.PuntoFinal.Companion.GET_TRENDING
-import com.squareup.picasso.Picasso
 
 class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
     RecyclerView.Adapter<AdaptadorListaPeliculas.ViewHolder>() {
 
     companion object {
         const val TITULO = "Titulo"
-        const val IDIOMA = "Titulo"
-        const val IMAGEN = "Titulo"
-        const val CALIFICACION = "Titulo"
-        const val FECHA_LANZAMIENTO = "Titulo"
-        const val DESCRIPCION = "Titulo"
+        const val IDIOMA = "Idioma"
+        const val IMAGEN = "Imagen"
+        const val CALIFICACION = "Califdicacion"
+        const val FECHA_LANZAMIENTO = "Fecha de Lanzamiento"
+        const val DESCRIPCION = "Descripcion"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,18 +38,19 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
             val imagenUrl = pelicula.imagenUrl
             val imagen = view.findViewById<ImageView>(R.id.cartelPeliculaImageView)
 
-            Picasso.get()
-                .load(GET_TRENDING + imagenUrl)
-                .resize(50, 50)
-                .centerCrop()
-                .into(imagen)
+            /*        Picasso.get()
+                        .load(URL_BASE + "t/p/w50" + imagenUrl)
+                        .resize(50, 50)
+                        .centerCrop()
+                        .into(imagen)*/
+
             view.findViewById<Button>(R.id.btn_ver_detalle).setOnClickListener {
 
                 val intent = Intent(view.context, ActividadDetallePelicula::class.java)
                 intent.putExtra(TITULO, pelicula.titulo)
                 intent.putExtra(IDIOMA, pelicula.idioma)
                 intent.putExtra(IMAGEN, pelicula.imagenUrl)
-                intent.putExtra(CALIFICACION, pelicula.calificacion)
+                intent.putExtra(CALIFICACION, pelicula.calificacion.toString())
                 intent.putExtra(FECHA_LANZAMIENTO, pelicula.fechaLanzamiento)
                 intent.putExtra(DESCRIPCION, pelicula.descripcion)
                 view.context.startActivity(intent)
