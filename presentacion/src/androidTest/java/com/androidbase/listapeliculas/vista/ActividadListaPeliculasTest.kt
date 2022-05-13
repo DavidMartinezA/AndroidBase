@@ -1,0 +1,3 @@
+package com.androidbase.listapeliculas.vista
+
+class ActividadListaPeliculasTest

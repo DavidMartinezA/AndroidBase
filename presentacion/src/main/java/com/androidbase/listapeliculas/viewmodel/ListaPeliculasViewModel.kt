@@ -9,24 +9,29 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-
 import javax.inject.Inject
 
 @HiltViewModel
 class ListaPeliculasViewModel @Inject constructor(private val repositorioConsulta: RepositorioConsultaPeliculas) : ViewModel() {
 
     private val cambioUi: MutableStateFlow<List<Pelicula>> = MutableStateFlow(emptyList())
-    var ListaPeliculas: StateFlow<List<Pelicula>> = cambioUi
+    var listaPeliculas: StateFlow<List<Pelicula>> = cambioUi
+    private val listaUi: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    var listavacia: StateFlow<Boolean> = listaUi
 
     fun mostrarListaPeliculas() = viewModelScope.launch {
-        val lista = repositorioConsulta.obtenerPaginaPeliculas().last().resultadoPeliculas
-        if (!lista.isNullOrEmpty()) {
-            cambioUi.value = lista
-        } else {
-            throw ExcepcionNulo()
+        try {
+            val lista = repositorioConsulta.obtenerPaginaPeliculas().last().resultadoPeliculas
+            if (!lista.isNullOrEmpty()) {
+                cambioUi.value = lista
+            } else {
+                listaUi.value = true
+            }
+        } catch (excepcion: ExcepcionNulo) {
+            listaUi.value = true
+
         }
 
     }
-
 
 }
