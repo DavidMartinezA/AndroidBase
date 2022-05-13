@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidbase.R
 import com.androidbase.detallepeliculas.ActividadDetallePelicula
 import com.dominio.peliculas.modelo.Pelicula
+import com.infraestructura.accesodatos.accesodatosapi.urlbase.PuntoFinal.Companion.URL_BASE_IMAGEN
 import com.squareup.picasso.Picasso
 
 class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
@@ -39,7 +40,7 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
             val imagenUrl = pelicula.imagenUrl
             val imagen = view.findViewById<ImageView>(R.id.cartelPeliculaImageView)
             Picasso.get()
-                .load("https://image.tmdb.org/t/p/w500$imagenUrl")
+                .load(URL_BASE_IMAGEN + imagenUrl)
                 .resize(50, 80)
                 .centerCrop()
                 .into(imagen)
