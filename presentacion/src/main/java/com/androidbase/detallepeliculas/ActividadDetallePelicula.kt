@@ -9,6 +9,7 @@ import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeli
 import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeliculas.Companion.IDIOMA
 import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeliculas.Companion.IMAGEN
 import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeliculas.Companion.TITULO
+import com.infraestructura.accesodatos.accesodatosapi.urlbase.PuntoFinal.Companion.URL_BASE_IMAGEN
 import com.squareup.picasso.Picasso
 
 class ActividadDetallePelicula : AppCompatActivity() {
@@ -43,7 +44,7 @@ class ActividadDetallePelicula : AppCompatActivity() {
         if (imagenUrl.isNotEmpty()) {
             val imagen = binding.cartelPeliculaDetalleImageView
             Picasso.get()
-                .load("https://image.tmdb.org/t/p/w500$imagenUrl")
+                .load(URL_BASE_IMAGEN + imagenUrl)
                 .resize(50, 80)
                 .centerCrop()
                 .into(imagen)

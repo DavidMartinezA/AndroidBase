@@ -105,13 +105,13 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTes
 
     def directoriesToCoverage = layout.files(
             "$moduleDominio.buildDir/tmp/kotlin-classes/debug/com/dominio",
-            "$moduleInfraestructura.buildDir/tmp/kotlin-classes/debug/com/infraestructura",
+            "$moduleInfraestructura.buildDir/tmp/kotlin-classes/debug/com/infraestructura/accesodatos",
             "$buildDir/tmp/kotlin-classes/debug/com/androidbase"
     )
 
     def mainSources = layout.files(
             "$moduleDominio.projectDir/src/main/java/com/dominio",
-            "$moduleInfraestructura.projectDir/src/main/java/com/infraestructura",
+            "$moduleInfraestructura.projectDir/src/main/java/com/infraestructura/accesodatos",
             "$projectDir/src/main/java/com/presentacion"
     )
 
