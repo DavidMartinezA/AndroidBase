@@ -11,32 +11,33 @@
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margen_chica"
         android:gravity="start"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="@dimen/padding_horizontal_normal"
         android:text="@string/titulo_pelicula"
-        app:layout_constraintStart_toEndOf="@+id/cartelPeliculaImageView"
-        app:layout_constraintTop_toTopOf="@+id/cartelPeliculaImageView" />
+        app:layout_constraintStart_toEndOf="@id/cartelPeliculaImageView"
+        app:layout_constraintTop_toTopOf="@id/cartelPeliculaImageView" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textoPeliculaTextView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/margen_normal"
         android:gravity="start"
         android:ems="10"
         android:textSize="@dimen/dimension_texto_chico"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="@dimen/padding_horizontal_normal"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tituloPeliculaTextView"
-        app:layout_constraintStart_toEndOf="@+id/tituloPeliculaTextView"
-        app:layout_constraintTop_toTopOf="@+id/tituloPeliculaTextView"
+        app:layout_constraintBottom_toBottomOf="@id/tituloPeliculaTextView"
+        app:layout_constraintStart_toEndOf="@id/tituloPeliculaTextView"
+        app:layout_constraintTop_toTopOf="@id/tituloPeliculaTextView"
         tools:text="Encanto" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/cartelPeliculaImageView"
-        android:layout_width="90dp"
-        android:layout_height="130dp"
-        android:layout_margin="10dp"
+        android:layout_width="@dimen/imagen_layout_width"
+        android:layout_height="@dimen/imagen_layout_height"
+        android:layout_margin="@dimen/margen_chica"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,23 +48,23 @@
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margen_chica"
         android:gravity="start"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="@dimen/padding_horizontal_normal"
         android:text="@string/titulo_idioma"
-        app:layout_constraintStart_toEndOf="@+id/cartelPeliculaImageView"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPeliculaTextView" />
+        app:layout_constraintStart_toEndOf="@id/cartelPeliculaImageView"
+        app:layout_constraintTop_toBottomOf="@id/tituloPeliculaTextView" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textoIdiomaTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="@dimen/padding_horizontal_normal"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/tituloIdiomaTextView"
-        app:layout_constraintStart_toEndOf="@+id/tituloIdiomaTextView"
-        app:layout_constraintTop_toTopOf="@+id/tituloIdiomaTextView"
+        app:layout_constraintBottom_toBottomOf="@id/tituloIdiomaTextView"
+        app:layout_constraintStart_toStartOf="@id/textoPeliculaTextView"
+        app:layout_constraintTop_toTopOf="@id/tituloIdiomaTextView"
         tools:text="Español" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -71,38 +72,39 @@
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margen_chica"
         android:gravity="start"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="@dimen/padding_horizontal_normal"
         android:text="@string/titulo_votacion"
-        app:layout_constraintStart_toEndOf="@+id/cartelPeliculaImageView"
-        app:layout_constraintTop_toBottomOf="@+id/tituloIdiomaTextView" />
+        app:layout_constraintStart_toEndOf="@id/cartelPeliculaImageView"
+        app:layout_constraintTop_toBottomOf="@id/tituloIdiomaTextView" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textoVotacionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="@dimen/padding_horizontal_normal"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tituloVotacionTextView"
-        app:layout_constraintStart_toEndOf="@+id/tituloVotacionTextView"
-        app:layout_constraintTop_toTopOf="@+id/tituloVotacionTextView"
+        app:layout_constraintBottom_toBottomOf="@id/tituloVotacionTextView"
+        app:layout_constraintStart_toStartOf="@id/textoIdiomaTextView"
+        app:layout_constraintTop_toTopOf="@id/tituloVotacionTextView"
         tools:text="8.7" />
 
     <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:id="@+id/btn_ver_detalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@android:color/transparent"
+        android:layout_margin="@dimen/margen_minima"
+        android:clickable="true"
         android:text="@string/texto_boton_ver"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="@dimen/dimension_texto_chico"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoVotacionTextView" />
+        app:layout_constraintTop_toBottomOf="@id/textoVotacionTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

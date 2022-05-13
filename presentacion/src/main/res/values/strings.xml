@@ -8,6 +8,7 @@
     <string name="titulo_votacion">Votacion:</string>
     <string name="titulo_sipnosis">Sipnosis:</string>
     <string name="texto_boton_ver">Ver</string>
+    <string name="boton_aceptar">Aceptar</string>
 
     <!--  api service https://developers.themoviedb.org/3/trending/get-trending
      https://api.themoviedb.org/3/trending/movie/day?api_key=a7f82b29e3df86d84ef8969c0cfeba1a-->
