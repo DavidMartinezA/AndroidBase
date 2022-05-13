@@ -18,7 +18,6 @@ class RepositorioPeliculasRoom @Inject constructor(baseDatosPaginaPeliculas: Bas
 
     override suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> {
         return traductorPagina.desdeBaseDatosADominio(paginaPeliculasDao.obtener())
-
     }
 
 }
