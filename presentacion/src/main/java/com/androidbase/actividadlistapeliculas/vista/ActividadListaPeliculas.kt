@@ -1,4 +1,4 @@
-package com.androidbase.listapeliculas.vista
+package com.androidbase.actividadlistapeliculas.vista
 
 import android.os.Bundle
 import androidx.activity.viewModels

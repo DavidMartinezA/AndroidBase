@@ -1,10 +1,8 @@
-package com.androidbase.listapeliculas.vista
+package com.androidbase.actividadlistapeliculas.vista
 
 import androidx.test.espresso.intent.Intents
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.platform.app.InstrumentationRegistry
-import com.androidbase.R
-import com.androidbase.actividadlistapeliculaspageobject.ActividadListaPeliculasPageObject
+import com.androidbase.actividadlistapeliculas.pageobject.ActividadListaPeliculasPageObject
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -17,11 +15,6 @@ class ActividadListaPeliculasTest {
 
     var mActivityTestRule = ActivityScenarioRule(ActividadListaPeliculas::class.java)
     private val actividadListaPeliculasPageObject = ActividadListaPeliculasPageObject()
-
-    @Before
-    fun borrarBaseDatos() {
-        InstrumentationRegistry.getInstrumentation().targetContext.deleteDatabase(R.string.nombre_base_datos.toString())
-    }
 
     @Before
     fun obtenerActividadDos() {
