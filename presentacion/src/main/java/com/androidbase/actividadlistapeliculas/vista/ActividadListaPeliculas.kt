@@ -14,7 +14,6 @@ import com.dominio.peliculas.modelo.Pelicula
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
 class ActividadListaPeliculas : AppCompatActivity() {
 
@@ -38,6 +37,7 @@ class ActividadListaPeliculas : AppCompatActivity() {
     }
 
     private fun mostrarListaPeliculas() {
+
         listaPeliculasViewModel.mostrarListaPeliculas()
         lifecycleScope.launchWhenStarted {
             listaPeliculasViewModel.listaPeliculas.collect {

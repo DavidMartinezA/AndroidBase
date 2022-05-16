@@ -4,8 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ScrollView
 import androidx.test.espresso.Espresso
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers
@@ -17,7 +17,6 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
-
 
 open class ActividadListaPeliculasPageObject {
 
@@ -110,15 +109,15 @@ open class ActividadListaPeliculasPageObject {
     }
 
     fun clickBotonVerDetalles(): ActividadListaPeliculasPageObject {
+
         Espresso.onView(
-            Matchers.allOf(withId(R.id.btn_ver_detalle), ViewMatchers.withText("Ver"),
+            Matchers.allOf(withId(R.id.btn_ver_detalle),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.listaPeliculasRecyclerview),
                         0),
                     7)))
-            .perform(ViewActions.scrollTo(), click())
-
+            .perform(scrollTo(), click())
         return this
     }
 

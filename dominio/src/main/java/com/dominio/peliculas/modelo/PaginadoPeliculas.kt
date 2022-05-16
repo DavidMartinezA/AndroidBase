@@ -20,4 +20,5 @@ data class PaginadoPeliculas(
 
     private fun validacionNulo(): Boolean = pagina == null || resultadoPeliculas == null ||
             paginasTotales == null || resultadoTotal == null
+
 }

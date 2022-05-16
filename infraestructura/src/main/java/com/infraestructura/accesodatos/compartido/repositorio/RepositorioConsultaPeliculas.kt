@@ -10,7 +10,6 @@ import java.net.UnknownHostException
 import java.time.LocalDateTime
 import javax.inject.Inject
 
-
 class RepositorioConsultaPeliculas @Inject constructor(
     private val repositorioPeliculasRoom: RepositorioPeliculasRoom,
     private val repositorioApi: RepositorioApi,
@@ -18,12 +17,11 @@ class RepositorioConsultaPeliculas @Inject constructor(
     private val dispatchers = Dispatchers.IO
 
     suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> = withContext(this.dispatchers) {
+
         val paginaPeliculas = repositorioPeliculasRoom.obtenerPaginaPeliculas()
         val diaHoy = LocalDateTime.now().dayOfWeek.value
-        val diaRegistroPelicula = paginaPeliculas.last()
 
-
-        if (paginaPeliculas.isNullOrEmpty() || diaRegistroPelicula.diaRegistro != diaHoy) {
+        if (paginaPeliculas.isNullOrEmpty() || paginaPeliculas.last().diaRegistro != diaHoy) {
             try {
                 val servicioApiPagina = repositorioApi.obtenerPaginaPeliculas()
                 repositorioPeliculasRoom.guardarPaginaPeliculas(servicioApiPagina)

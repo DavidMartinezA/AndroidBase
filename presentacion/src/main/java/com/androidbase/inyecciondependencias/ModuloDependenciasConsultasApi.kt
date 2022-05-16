@@ -40,4 +40,5 @@ class ModuloDependenciasConsultasApi {
     fun obtenerServicioApi(retrofit: Retrofit): ServicioApi {
         return retrofit.create(ServicioApi::class.java)
     }
+
 }

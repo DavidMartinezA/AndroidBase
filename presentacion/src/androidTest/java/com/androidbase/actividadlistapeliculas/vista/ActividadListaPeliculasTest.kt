@@ -12,7 +12,6 @@ class ActividadListaPeliculasTest {
 
     @Rule
     @JvmField
-
     var mActivityTestRule = ActivityScenarioRule(ActividadListaPeliculas::class.java)
     private val actividadListaPeliculasPageObject = ActividadListaPeliculasPageObject()
 

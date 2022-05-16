@@ -63,4 +63,5 @@ class ActividadDetallePelicula : AppCompatActivity() {
         binding.textoFechaLanzamientoTextView.text = fechaLanzamiento
         binding.textoSipnosisTextView.text = descripcion
     }
+
 }

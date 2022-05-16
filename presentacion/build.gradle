@@ -71,7 +71,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     kapt "androidx.lifecycle:lifecycle-common-java8:2.4.1"
 
-
     //Inyeccion dependencias
     implementation "com.google.dagger:hilt-android:2.41"
     kapt "com.google.dagger:hilt-android-compiler:2.41"
@@ -112,7 +111,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTes
     def mainSources = layout.files(
             "$moduleDominio.projectDir/src/main/java/com/dominio",
             "$moduleInfraestructura.projectDir/src/main/java/com/infraestructura/accesodatos",
-            "$projectDir/src/main/java/com/presentacion"
+            "$projectDir/src/main/java/com/androidbase"
     )
 
     def executionFilesFromConnectedAndroidTest = fileTree(

@@ -20,7 +20,8 @@ class ListaPeliculasViewModel @Inject constructor(private val repositorioConsult
     var listavacia: StateFlow<Boolean> = listaUi
 
     fun mostrarListaPeliculas() = viewModelScope.launch {
-        try {
+
+    try {
             val lista = repositorioConsulta.obtenerPaginaPeliculas().last().resultadoPeliculas
             if (!lista.isNullOrEmpty()) {
                 cambioUi.value = lista
@@ -30,7 +31,6 @@ class ListaPeliculasViewModel @Inject constructor(private val repositorioConsult
         } catch (excepcion: ExcepcionNulo) {
             listaUi.value = true
         }
-
     }
 
 }

@@ -32,4 +32,5 @@ abstract class ModuloDependenciasRoom {
 
     @Binds
     abstract fun proveerRepositorio(repositorio: RepositorioPeliculasRoom): RepositorioPelicula
+
 }
