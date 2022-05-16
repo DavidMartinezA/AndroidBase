@@ -20,6 +20,7 @@ pipeline {
        echo "------------>Compile<------------"
        sh 'chmod +x ./gradlew'
        sh './gradlew build -x test'
+       sh 'echo $JAVA_HOME'
      }
    }
 
