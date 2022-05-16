@@ -14,7 +14,7 @@ class PaginadoPeliculasTest {
     private var resultadoTotal: Int? = 1000
 
     @Test
-    fun initValidacionDeNulo_parametrosCorrectos_paginadoPeliculasPage() {
+    fun init_validacionDeNuloParametrosCorrectos_paginadoPeliculasPage() {
 
         //Arrange
         resultadoPeliculas?.add(pelicula)

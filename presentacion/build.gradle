@@ -99,41 +99,41 @@ dependencies {
 task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTest',':presentacion:connectedAndroidTest',
                                                       ':infraestructura:connectedAndroidTest']) {
 
-    def moduleDominio = project(':dominio')
-    def moduleInfraestructura = project(':infraestructura')
+    def moduloDominio = project(':dominio')
+    def moduloInfraestructura = project(':infraestructura')
 
-    def directoriesToCoverage = layout.files(
-            "$moduleDominio.buildDir/tmp/kotlin-classes/debug/com/dominio",
-            "$moduleInfraestructura.buildDir/tmp/kotlin-classes/debug/com/infraestructura/accesodatos",
+    def directoriosArchivosClasses = layout.files(
+            "$moduloDominio.buildDir/tmp/kotlin-classes/debug/com/dominio",
+            "$moduloInfraestructura.buildDir/tmp/kotlin-classes/debug/com/infraestructura/accesodatos",
             "$buildDir/tmp/kotlin-classes/debug/com/androidbase"
     )
 
-    def mainSources = layout.files(
-            "$moduleDominio.projectDir/src/main/java/com/dominio",
-            "$moduleInfraestructura.projectDir/src/main/java/com/infraestructura/accesodatos",
+    def archivosPropios = layout.files(
+            "$moduloDominio.projectDir/src/main/java/com/dominio",
+            "$moduloInfraestructura.projectDir/src/main/java/com/infraestructura/accesodatos",
             "$projectDir/src/main/java/com/androidbase"
     )
 
-    def executionFilesFromConnectedAndroidTest = fileTree(
+    def archivosPruebasIntegracion = fileTree(
             dir: "$buildDir", includes:
             ["outputs/code_coverage/debugAndroidTest/connected/**/coverage.ec"]
     )
 
-    def executionFileForUnitTestInModule =
-            "$moduleDominio.buildDir/outputs/Unit_Test_code_coverage/debugUnitTest/testDebugUnitTest.exec"
+    def archivosPruebasUnitarias =
+            "$moduloDominio.buildDir/outputs/Unit_Test_code_coverage/debugUnitTest/testDebugUnitTest.exec"
 
-    def executionFileFromConnectedAndroidTestInOtherModule =
-            "$moduleInfraestructura.buildDir/outputs/code_coverage/debugUnitTest/connected/**/coverage.ec"
+    def archivosPruebasIntegracionOtrosModulos =
+            "$moduloInfraestructura.buildDir/outputs/code_coverage/debugUnitTest/connected/**/coverage.ec"
 
-    def executionFiles = layout.files(
-            executionFilesFromConnectedAndroidTest,
-            executionFileFromConnectedAndroidTestInOtherModule,
-            executionFileForUnitTestInModule
+    def archivosPruebas = layout.files(
+            archivosPruebasIntegracion,
+            archivosPruebasIntegracionOtrosModulos,
+            archivosPruebasUnitarias
     )
 
-    sourceDirectories.setFrom(files([mainSources]))
-    classDirectories.setFrom(files([directoriesToCoverage.asFileTree]))
-    executionData.setFrom(executionFiles.asFileTree)
+    sourceDirectories.setFrom(files([archivosPropios]))
+    classDirectories.setFrom(files([directoriosArchivosClasses.asFileTree]))
+    executionData.setFrom(archivosPruebas.asFileTree)
 
     reports {
         xml.enabled true
