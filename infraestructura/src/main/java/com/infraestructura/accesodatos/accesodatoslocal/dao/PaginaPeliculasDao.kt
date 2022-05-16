@@ -9,9 +9,9 @@ import com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos.Entidad
 @Dao
 interface PaginaPeliculasDao {
 
-    @Query("SELECT * FROM EntidadBaseDatosPelicula")
+    @Query("SELECT * FROM EntidadBaseDatosPelicula ORDER BY diaRegistro")
     suspend fun obtener(): List<EntidadBaseDatosPelicula>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertar(entidadBaseDatosPelicula: EntidadBaseDatosPelicula)
 }

@@ -29,7 +29,6 @@ class ListaPeliculasViewModel @Inject constructor(private val repositorioConsult
             }
         } catch (excepcion: ExcepcionNulo) {
             listaUi.value = true
-
         }
 
     }

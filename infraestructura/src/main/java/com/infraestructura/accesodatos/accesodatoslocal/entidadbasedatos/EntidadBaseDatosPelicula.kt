@@ -6,11 +6,11 @@ import com.dominio.peliculas.modelo.Pelicula
 
 @Entity
 class EntidadBaseDatosPelicula(
-    @PrimaryKey(autoGenerate = true)
 
+    @PrimaryKey(autoGenerate = true)
     var pagina: Int?,
     var resultadoPeliculas: List<Pelicula>?,
     var paginasTotales: Int?,
     var resultadoTotal: Int?,
-    var diaRegistro: Int?,
+    var diaRegistro: Int,
 )

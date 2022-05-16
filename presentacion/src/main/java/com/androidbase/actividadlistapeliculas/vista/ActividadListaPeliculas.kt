@@ -47,11 +47,12 @@ class ActividadListaPeliculas : AppCompatActivity() {
     }
 
     private fun generarDialogoExcepciones() {
-        val dialogoExcepciones = AlertDialog.Builder(this)
-        dialogoExcepciones.setTitle(getString(R.string.app_name))
+
         lifecycleScope.launch {
             listaPeliculasViewModel.listavacia.collect {
                 if (it) {
+                    val dialogoExcepciones = AlertDialog.Builder(this@ActividadListaPeliculas)
+                    dialogoExcepciones.setTitle(getString(R.string.app_name))
                     dialogoExcepciones.setMessage("No Existe Informacion En La Lista")
                         .setPositiveButton(getString(R.string.boton_aceptar), null)
                         .show()

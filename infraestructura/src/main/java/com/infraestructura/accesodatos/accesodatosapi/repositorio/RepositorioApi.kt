@@ -15,7 +15,6 @@ class RepositorioApi @Inject constructor(
 
     suspend fun obtenerPaginaPeliculas(): PaginadoPeliculas = withContext(this.dispatchers) {
         return@withContext servicioApi.obtenerpagina()
-
     }
 }
 

@@ -11,7 +11,8 @@ class TraductorPagina {
             resultadoPeliculas = paginadoPeliculas.resultadoPeliculas,
             paginasTotales = paginadoPeliculas.paginasTotales,
             resultadoTotal = paginadoPeliculas.resultadoTotal,
-            diaRegistro = paginadoPeliculas.diaRegistro)
+            diaRegistro = paginadoPeliculas.diaRegistro
+        )
     }
 
     fun desdeBaseDatosADominio(listaEntidadBaseDatos: List<EntidadBaseDatosPelicula>): List<PaginadoPeliculas> {
@@ -22,8 +23,8 @@ class TraductorPagina {
                 it.resultadoPeliculas,
                 it.paginasTotales,
                 it.resultadoTotal,
-                it.diaRegistro)
-
+                it.diaRegistro
+            )
             listaDominio.add(paginaPeliculasDominio)
         }
         return listaDominio
