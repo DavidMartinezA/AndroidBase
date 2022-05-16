@@ -18,9 +18,10 @@ pipeline {
    stage('Compile') {
      steps {
        echo "------------>Compile<------------"
+       sh 'echo $JAVA_HOME'
        sh 'chmod +x ./gradlew'
        sh './gradlew build -x test'
-       sh 'echo $JAVA_HOME'
+
      }
    }
 
