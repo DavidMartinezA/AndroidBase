@@ -11,7 +11,8 @@ class TraductorPagina {
             resultadoPeliculas = paginadoPeliculas.resultadoPeliculas,
             paginasTotales = paginadoPeliculas.paginasTotales,
             resultadoTotal = paginadoPeliculas.resultadoTotal,
-            diaRegistro = paginadoPeliculas.diaRegistro
+            diaRegistro = paginadoPeliculas.diaRegistro,
+            id = paginadoPeliculas.id
         )
     }
 
@@ -22,9 +23,10 @@ class TraductorPagina {
             val paginaPeliculasDominio = PaginadoPeliculas(it.pagina,
                 it.resultadoPeliculas,
                 it.paginasTotales,
-                it.resultadoTotal,
-                it.diaRegistro
+                it.resultadoTotal
             )
+            paginaPeliculasDominio.id = it.id
+            paginaPeliculasDominio.diaRegistro = it.diaRegistro
             listaDominio.add(paginaPeliculasDominio)
         }
         return listaDominio

@@ -7,14 +7,12 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
-class RepositorioApi @Inject constructor(
-    private val servicioApi: ServicioApi,
-) {
+class RepositorioApi @Inject constructor(private val servicioApi: ServicioApi) {
 
     private val dispatchers = Dispatchers.IO
 
-    suspend fun obtenerPaginaPeliculas(): PaginadoPeliculas = withContext(this.dispatchers) {
-        return@withContext servicioApi.obtenerpagina()
+    suspend fun obtenerPaginaPeliculas(): PaginadoPeliculas = withContext(dispatchers) {
+        return@withContext servicioApi.obtenerPagina()
     }
 }
 

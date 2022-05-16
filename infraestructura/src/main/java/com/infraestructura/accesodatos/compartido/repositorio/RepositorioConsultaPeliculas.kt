@@ -19,7 +19,11 @@ class RepositorioConsultaPeliculas @Inject constructor(
 
     suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> = withContext(this.dispatchers) {
         val paginaPeliculas = repositorioPeliculasRoom.obtenerPaginaPeliculas()
-        if (paginaPeliculas.isEmpty() || paginaPeliculas.last().diaRegistro == LocalDateTime.now().dayOfWeek.value) {
+        val diaHoy = LocalDateTime.now().dayOfWeek.value
+        val diaRegistroPelicula = paginaPeliculas.last()
+
+
+        if (paginaPeliculas.isNullOrEmpty() || diaRegistroPelicula.diaRegistro != diaHoy) {
             try {
                 val servicioApiPagina = repositorioApi.obtenerPaginaPeliculas()
                 repositorioPeliculasRoom.guardarPaginaPeliculas(servicioApiPagina)

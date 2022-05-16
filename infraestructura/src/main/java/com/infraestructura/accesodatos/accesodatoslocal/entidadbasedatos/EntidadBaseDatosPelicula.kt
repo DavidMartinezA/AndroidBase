@@ -8,6 +8,7 @@ import com.dominio.peliculas.modelo.Pelicula
 class EntidadBaseDatosPelicula(
 
     @PrimaryKey(autoGenerate = true)
+    var id: Int,
     var pagina: Int?,
     var resultadoPeliculas: List<Pelicula>?,
     var paginasTotales: Int?,
