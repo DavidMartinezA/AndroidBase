@@ -45,6 +45,7 @@ class ActividadDetallePelicula : AppCompatActivity() {
             val imagen = binding.cartelPeliculaDetalleImageView
             Picasso.get()
                 .load(URL_BASE_IMAGEN + imagenUrl)
+                .resize(50, 80)
                 .centerCrop()
                 .into(imagen)
         }

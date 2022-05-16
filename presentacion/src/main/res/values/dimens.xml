@@ -6,9 +6,8 @@
     <dimen name="margen_minima">8dp</dimen>
     <dimen name="padding_horizontal_normal">10dp</dimen>
     <dimen name="dimension_texto_titulo">24sp</dimen>
+    <dimen name="dimension_texto_medio">20sp</dimen>
     <dimen name="dimension_texto_chico">12sp</dimen>
     <dimen name="imagen_layout_width">90dp</dimen>
     <dimen name="imagen_layout_height">130dp</dimen>
-
-
 </resources>

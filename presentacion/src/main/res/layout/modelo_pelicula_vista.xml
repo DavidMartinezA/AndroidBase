@@ -20,15 +20,17 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textoPeliculaTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/margen_normal"
+        android:ellipsize="end"
         android:gravity="start"
-        android:ems="10"
-        android:textSize="@dimen/dimension_texto_chico"
+        android:lines="2"
         android:paddingHorizontal="@dimen/padding_horizontal_normal"
+        android:textSize="@dimen/dimension_texto_chico"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/tituloPeliculaTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tituloPeliculaTextView"
         app:layout_constraintTop_toTopOf="@id/tituloPeliculaTextView"
         tools:text="Encanto" />
