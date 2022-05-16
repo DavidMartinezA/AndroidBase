@@ -29,7 +29,7 @@ import java.io.InputStreamReader
 @RunWith(AndroidJUnit4::class)
 class RepositorioConsultaPeliculasTest {
 
-    private lateinit var servicioMockWeb: MockWebServer
+    private lateinit var servicioMockFakeWeb: MockWebServer
     private lateinit var repositorioConsultaPeliculas: RepositorioConsultaPeliculas
     private lateinit var baseDatosEntidades: BaseDatosPaginaPeliculas
     private lateinit var repositorioApi: RepositorioApi
@@ -39,7 +39,7 @@ class RepositorioConsultaPeliculasTest {
 
     @Before
     fun configuracionInicial() {
-        servicioMockWeb = MockWebServer()
+        servicioMockFakeWeb = MockWebServer()
 
         val context = ApplicationProvider.getApplicationContext<Context>()
         baseDatosEntidades = Room.inMemoryDatabaseBuilder(
@@ -47,7 +47,7 @@ class RepositorioConsultaPeliculasTest {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(servicioMockWeb.url(""))
+            .baseUrl(servicioMockFakeWeb.url(""))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -60,7 +60,7 @@ class RepositorioConsultaPeliculasTest {
 
     @After
     fun configuracionFinal() {
-        servicioMockWeb.shutdown()
+        servicioMockFakeWeb.shutdown()
         baseDatosEntidades.close()
     }
 
@@ -101,7 +101,7 @@ class RepositorioConsultaPeliculasTest {
 
         //Arrange
         val respuestaApi = leerJson("RespuestaPagina.json")
-        servicioMockWeb.enqueue(MockResponse().setBody(respuestaApi))
+        servicioMockFakeWeb.enqueue(MockResponse().setBody(respuestaApi))
 
         //Act
         val respuesta = repositorioApi.obtenerPaginaPeliculas()

@@ -86,5 +86,4 @@ dependencies {
     testImplementation 'org.mockito:mockito-inline:2.13.0'
     androidTestImplementation "org.mockito:mockito-android:4.5.1"
 
-
 }

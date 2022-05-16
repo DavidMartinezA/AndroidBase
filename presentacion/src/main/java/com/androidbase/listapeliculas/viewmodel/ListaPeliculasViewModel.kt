@@ -21,7 +21,7 @@ class ListaPeliculasViewModel @Inject constructor(private val repositorioConsult
 
     fun mostrarListaPeliculas() = viewModelScope.launch {
 
-    try {
+        try {
             val lista = repositorioConsulta.obtenerPaginaPeliculas().last().resultadoPeliculas
             if (!lista.isNullOrEmpty()) {
                 cambioUi.value = lista

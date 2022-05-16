@@ -1,22 +1,23 @@
 package com.dominio.peliculas.modelo
 
 import com.dominio.peliculas.excepcion.ExcepcionNulo
-import com.google.gson.annotations.SerializedName
 
 data class Pelicula(
     val id: Int?,
-    @SerializedName("original_language") var idioma: String?,
-    @SerializedName("original_title") var titulo: String?,
-    @SerializedName("poster_path") var imagenUrl: String?,
-    @SerializedName("vote_average") var calificacion: Float?,
-    @SerializedName("release_date") var fechaLanzamiento: String?,
-    @SerializedName("overview") var descripcion: String?,
+    var original_language: String?,
+    var original_title: String?,
+    var poster_path: String?,
+    var vote_average: Float?,
+    var release_date: String?,
+    var overview: String?,
 ) {
     init {
         if (validacionNulo()) throw ExcepcionNulo()
     }
 
-    private fun validacionNulo(): Boolean = id == null || idioma == null || titulo == null || imagenUrl == null
-            || calificacion == null || fechaLanzamiento == null || descripcion == null
+    val validacionArgumentos: ArrayList<String?> = arrayListOf(original_language, original_title, poster_path,
+        vote_average.toString(), release_date, overview)
+
+    private fun validacionNulo(): Boolean = validacionArgumentos.isNullOrEmpty()
 
 }
