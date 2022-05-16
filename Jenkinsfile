@@ -18,7 +18,6 @@ pipeline {
    stage('Compile') {
      steps {
        echo "------------>Compile<------------"
-       sh 'export JAVA_HOME=/Users/IC-MAC/Documents/java/jdk-11/Contents/Home'
        sh 'chmod +x ./gradlew'
        sh './gradlew build -x test'
 
