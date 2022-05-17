@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.androidbase.R
 import com.dominio.peliculas.repositorio.RepositorioPelicula
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
-import com.infraestructura.accesodatos.compartido.repositorio.RepositorioConsultaPeliculas
+import com.infraestructura.accesodatos.compartido.repositorio.ConsultaPeliculasProxy
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -31,6 +31,6 @@ abstract class ModuloDependenciasRoom {
     }
 
     @Binds
-    abstract fun proveerRepositorio(repositorio: RepositorioConsultaPeliculas): RepositorioPelicula
+    abstract fun proveerRepositorio(repositorio: ConsultaPeliculasProxy): RepositorioPelicula
 
 }

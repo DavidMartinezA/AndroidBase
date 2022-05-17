@@ -5,16 +5,16 @@ import com.dominio.peliculas.repositorio.RepositorioPelicula
 import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
 import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.TraductorPagina
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
-import java.time.LocalDateTime
 import javax.inject.Inject
 
 class RepositorioConsultaPeliculas @Inject constructor(
     baseDatosPaginaPeliculas: BaseDatosPaginaPeliculas,
-    private val servicioApi: ServicioApi,
+    servicioApi: ServicioApi,
 ) : RepositorioPelicula {
 
     private val paginaPeliculasDao = baseDatosPaginaPeliculas.paginaPeliculasdao()
     private val traductorPagina = TraductorPagina()
+    private val servicioApi = servicioApi
 
     override suspend fun guardarPaginaPeliculas(paginaPeliculas: PaginadoPeliculas) {
         val entidadPaginaPeliculas = traductorPagina.desdeDominioABaseDatos(paginaPeliculas)
@@ -22,15 +22,10 @@ class RepositorioConsultaPeliculas @Inject constructor(
     }
 
     override suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> {
+        return traductorPagina.desdeBaseDatosADominio(paginaPeliculasDao.obtener())
+    }
 
-        val paginaPeliculas = paginaPeliculasDao.obtener()
-        val diaHoy = LocalDateTime.now().dayOfWeek.value
-
-        if (paginaPeliculas.isNullOrEmpty() || paginaPeliculas.last().diaRegistro != diaHoy) {
-            paginaPeliculasDao.insertar(traductorPagina.desdeDominioABaseDatos(servicioApi.obtenerPagina()))
-            return listOf(servicioApi.obtenerPagina())
-        } else {
-            return traductorPagina.desdeBaseDatosADominio(paginaPeliculas)
-        }
+    suspend fun obtenerPeliculasApi(): PaginadoPeliculas {
+        return servicioApi.obtenerPagina()
     }
 }
