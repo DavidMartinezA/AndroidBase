@@ -15,9 +15,11 @@ data class Pelicula(
         if (validacionNulo()) throw ExcepcionNulo()
     }
 
-    val validacionArgumentos: ArrayList<String?> = arrayListOf(original_language, original_title, poster_path,
-        vote_average.toString(), release_date, overview)
+    //  todo val validacionArgumentos : ArrayList<String?> = arrayListOf( original_language, original_title,poster_path,release_date,overview)
 
-    private fun validacionNulo(): Boolean = validacionArgumentos.isNullOrEmpty()
+    private fun validacionNulo(): Boolean =
+        vote_average == null || original_language.isNullOrEmpty() || original_title.isNullOrEmpty() ||
+                poster_path.isNullOrEmpty() || release_date.isNullOrEmpty() ||
+                overview.isNullOrEmpty()
 
 }

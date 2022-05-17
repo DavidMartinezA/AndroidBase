@@ -7,10 +7,10 @@ class TraductorPagina {
 
     fun desdeDominioABaseDatos(paginadoPeliculas: PaginadoPeliculas): EntidadBaseDatosPelicula {
         return EntidadBaseDatosPelicula(
-            pagina = paginadoPeliculas.pagina,
-            resultadoPeliculas = paginadoPeliculas.resultadoPeliculas,
-            paginasTotales = paginadoPeliculas.paginasTotales,
-            resultadoTotal = paginadoPeliculas.resultadoTotal,
+            pagina = paginadoPeliculas.page,
+            resultadoPeliculas = paginadoPeliculas.results,
+            paginasTotales = paginadoPeliculas.total_pages,
+            resultadoTotal = paginadoPeliculas.total_results,
             diaRegistro = paginadoPeliculas.diaRegistro,
             id = paginadoPeliculas.id
         )

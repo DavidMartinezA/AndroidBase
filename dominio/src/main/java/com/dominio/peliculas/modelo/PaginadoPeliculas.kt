@@ -16,8 +16,9 @@ data class PaginadoPeliculas(
         if (validacionNulo()) throw ExcepcionNulo()
     }
 
-    private val validacionArgumentos: ArrayList<Int?> = arrayListOf(page, total_pages, total_results)
+    //private val validacionArgumentos: ArrayList<Int?> = arrayListOf( page,total_pages,total_results)
 
-    private fun validacionNulo(): Boolean = validacionArgumentos.isNullOrEmpty() || results.isNullOrEmpty()
+    private fun validacionNulo(): Boolean = page == null || results.isNullOrEmpty() ||
+            total_pages == null || total_results == null
 
 }
