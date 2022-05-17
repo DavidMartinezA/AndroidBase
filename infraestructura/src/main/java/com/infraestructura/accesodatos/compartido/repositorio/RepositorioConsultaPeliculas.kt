@@ -1,36 +1,39 @@
 package com.infraestructura.accesodatos.compartido.repositorio
 
-import com.dominio.peliculas.excepcion.ExcepcionNulo
 import com.dominio.peliculas.modelo.PaginadoPeliculas
-import com.infraestructura.accesodatos.accesodatosapi.repositorio.RepositorioApi
-import com.infraestructura.accesodatos.accesodatoslocal.repositorio.RepositorioPeliculasRoom
+import com.dominio.peliculas.repositorio.RepositorioPelicula
+import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
+import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.TraductorPagina
+import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.net.UnknownHostException
 import java.time.LocalDateTime
 import javax.inject.Inject
 
 class RepositorioConsultaPeliculas @Inject constructor(
-    private val repositorioPeliculasRoom: RepositorioPeliculasRoom,
-    private val repositorioApi: RepositorioApi,
-) {
+    baseDatosPaginaPeliculas: BaseDatosPaginaPeliculas,
+    private val servicioApi: ServicioApi,
+) : RepositorioPelicula {
+
+    private val paginaPeliculasDao = baseDatosPaginaPeliculas.paginaPeliculasdao()
+    private val traductorPagina = TraductorPagina()
     private val dispatchers = Dispatchers.IO
 
-    suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> = withContext(this.dispatchers) {
+    override suspend fun guardarPaginaPeliculas(paginaPeliculas: PaginadoPeliculas) {
+        val entidadPaginaPeliculas = traductorPagina.desdeDominioABaseDatos(paginaPeliculas)
+        paginaPeliculasDao.insertar(entidadPaginaPeliculas)
+    }
 
-        val paginaPeliculas = repositorioPeliculasRoom.obtenerPaginaPeliculas()
+    override suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> = withContext(this.dispatchers) {
+
+        val paginaPeliculas = paginaPeliculasDao.obtener()
         val diaHoy = LocalDateTime.now().dayOfWeek.value
 
         if (paginaPeliculas.isNullOrEmpty() || paginaPeliculas.last().diaRegistro != diaHoy) {
-            try {
-                val servicioApiPagina = repositorioApi.obtenerPaginaPeliculas()
-                repositorioPeliculasRoom.guardarPaginaPeliculas(servicioApiPagina)
-                return@withContext listOf(servicioApiPagina)
-            } catch (excepcion: UnknownHostException) {
-                throw ExcepcionNulo()
-            }
+            paginaPeliculasDao.insertar(traductorPagina.desdeDominioABaseDatos(servicioApi.obtenerPagina()))
+            return@withContext listOf(servicioApi.obtenerPagina())
         } else {
-            return@withContext repositorioPeliculasRoom.obtenerPaginaPeliculas()
+            return@withContext traductorPagina.desdeBaseDatosADominio(paginaPeliculas)
         }
     }
 }
