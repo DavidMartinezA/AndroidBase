@@ -1,3 +1,5 @@
 package com.dominio.peliculas.excepcion
 
-class ExcepcionNulo : Exception("Parametro con valor nulo")
+import com.example.compartido.excepciones.AndroidBaseExcepcion
+
+class ExcepcionNulo : AndroidBaseExcepcion("Parametro con valor nulo")
