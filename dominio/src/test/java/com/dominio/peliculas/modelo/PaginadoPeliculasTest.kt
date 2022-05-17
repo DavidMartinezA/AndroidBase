@@ -7,14 +7,15 @@ import org.junit.Test
 
 class PaginadoPeliculasTest {
 
-    private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
+    private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url",
+        8.55F, "2022", "pelicula colombiana")
     private var pagina: Int? = 1
     private var resultadoPeliculas: ArrayList<Pelicula>? = ArrayList()
     private var paginasTotales: Int? = 100
     private var resultadoTotal: Int? = 1000
 
     @Test
-    fun init_validacionDeNuloParametrosCorrectos_paginadoPeliculasPagina() {
+    fun init_validacionDeNoNuloPaginaParametroCorrecto_paginaPeliculas() {
 
         //Arrange
         resultadoPeliculas?.add(pelicula)
@@ -23,14 +24,51 @@ class PaginadoPeliculasTest {
         val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
 
         //Assert
-        assertEquals(paginado.pagina, pagina)
-        assertEquals(paginado.resultadoPeliculas, resultadoPeliculas)
-        assertEquals(paginado.paginasTotales, paginasTotales)
-        assertEquals(paginado.resultadoTotal, resultadoTotal)
+        assertEquals(paginado.page, pagina)
     }
 
     @Test
-    fun initValidacionDeNulo_parametroPageNulo_lanzarExcepcionNulo() {
+    fun init_validacionDeNoNuloResultadoPeliculasParametroCorrecto_resultadoPeliculas() {
+
+        //Arrange
+        resultadoPeliculas?.add(pelicula)
+
+        //Act
+        val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+
+        //Assert
+        assertEquals(paginado.results, resultadoPeliculas)
+    }
+
+    @Test
+    fun init_validacionDeNoNuloPaginasTotalesParametroCorrecto_paginasTotales() {
+
+        //Arrange
+        resultadoPeliculas?.add(pelicula)
+
+        //Act
+        val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+
+        //Assert
+        assertEquals(paginado.total_pages, paginasTotales)
+    }
+
+    @Test
+    fun init_validacionDeNoNuloResultadoTotalParametroCorrecto_paginasTotales() {
+
+        //Arrange
+        resultadoPeliculas?.add(pelicula)
+
+        //Act
+        val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+
+        //Assert
+        assertEquals(paginado.total_results, resultadoTotal)
+    }
+
+
+    @Test
+    fun init_validacionDeNuloParametroPaginaNulo_lanzarExcepcionNulo() {
 
         //Arrange
         resultadoPeliculas?.add(pelicula)
@@ -44,7 +82,7 @@ class PaginadoPeliculasTest {
     }
 
     @Test
-    fun initValidacionDeNulo_parametroResultsNulo_lanzarExcepcionNulo() {
+    fun init_validacionDeNuloParametroResultadoPeliculasNulo_lanzarExcepcionNulo() {
 
         //Arrange
         resultadoPeliculas = null
@@ -57,7 +95,7 @@ class PaginadoPeliculasTest {
     }
 
     @Test
-    fun initValidacionDeNulo_parametroTotalResultsNulo_lanzarExcepcionNulo() {
+    fun init_validacionDeNuloParametroTotalResultsNulo_lanzarExcepcionNulo() {
 
         //Arrange
         resultadoTotal = null
@@ -70,7 +108,7 @@ class PaginadoPeliculasTest {
     }
 
     @Test
-    fun initValidacionDeNulo_parametroTotalPagesNulo_lanzarExcepcionNulo() {
+    fun init_validacionDeNuloParametroPaginasTotalesNulo_lanzarExcepcionNulo() {
 
         //Arrange
         paginasTotales = null

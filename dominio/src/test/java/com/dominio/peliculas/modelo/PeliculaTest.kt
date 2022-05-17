@@ -17,36 +17,74 @@ class PeliculaTest {
 
 
     @Test
-    fun initValidacionDeNulo_parametrosCorrectos_paginadoPeliculasPage() {
+    fun init_validacionDeNuloIdimaParametroCorrecto_idiomaPaginadoPeliculas() {
 
         //Arrange
         //Act
         val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
-        assertEquals(pelicula.id, id)
-        assertEquals(pelicula.idioma, idioma)
-        assertEquals(pelicula.titulo, titulo)
-        assertEquals(pelicula.imagenUrl, imagenUrl)
-        assertEquals(pelicula.calificacion, calificacion)
-        assertEquals(pelicula.fechaLanzamiento, fechaLanzamiento)
-        assertEquals(pelicula.descripcion, descripcion)
+        assertEquals(pelicula.original_language, idioma)
     }
 
     @Test
-    fun initValidacionDeNulo_parametroIdNulo_LanzarExcepcionNulo() {
+    fun init_validacionDeNuloTituloParametroCorrecto_tituloPaginadoPeliculas() {
 
         //Arrange
-        id = null
         //Act
+        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+
         //Assert
-        assertThrows(ExcepcionNulo::class.java) {
-            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
-        }
+        assertEquals(pelicula.original_title, titulo)
     }
 
     @Test
-    fun initValidacionDeNulo_parametroOriginalLenguajeNulo_LanzarExcepcionNulo() {
+    fun init_validacionDeNuloImagenUrlParametroCorrecto_imagenUrlPaginadoPeliculas() {
+
+        //Arrange
+        //Act
+        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+
+        //Assert
+        assertEquals(pelicula.poster_path, imagenUrl)
+
+    }
+
+    @Test
+    fun init_validacionDeNuloCalificacionParametroCorrecto_calificacionPaginadoPeliculas() {
+
+        //Arrange
+        //Act
+        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+
+        //Assert
+        assertEquals(pelicula.vote_average, calificacion)
+    }
+
+    @Test
+    fun init_validacionDeNuloFechaLanzamientoParametroCorrecto_fechaLanzamientoPaginadoPeliculas() {
+
+        //Arrange
+        //Act
+        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+
+        //Assert
+        assertEquals(pelicula.release_date, fechaLanzamiento)
+    }
+
+    @Test
+    fun init_validacionDeNuloDescripcionParametroCorrecto_descripcionPaginadoPeliculas() {
+
+        //Arrange
+        //Act
+        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+
+        //Assert
+        assertEquals(pelicula.overview, descripcion)
+    }
+
+    @Test
+    fun init_validacionDeNuloParametroIdiomaNulo_lanzarExcepcionNulo() {
 
         //Arrange
         idioma = null
@@ -58,7 +96,7 @@ class PeliculaTest {
     }
 
     @Test
-    fun initValidacionDeNulo_parametroOriginalTitleNulo_LanzarExcepcionNulo() {
+    fun init_validacionDeNuloParametroTituloNulo_lanzarExcepcionNulo() {
 
         //Arrange
         titulo = null
@@ -70,7 +108,7 @@ class PeliculaTest {
     }
 
     @Test
-    fun initValidacionDeNulo_parametroPosterPathNulo_LanzarExcepcionNulo() {
+    fun init_validacionDeNuloParametroImagenUrlNulo_lanzarExcepcionNulo() {
 
         //Arrange
         imagenUrl = null
@@ -82,7 +120,7 @@ class PeliculaTest {
     }
 
     @Test
-    fun initValidacionDeNulo_parametroVoteAverageNulo_LanzarExcepcionNulo() {
+    fun init_validacionDeNuloParametroCalificacionNulo_lanzarExcepcionNulo() {
 
         //Arrange
         calificacion = null
@@ -94,7 +132,7 @@ class PeliculaTest {
     }
 
     @Test
-    fun initValidacionDeNulo_parametroReleaseDateNulo_LanzarExcepcionNulo() {
+    fun init_validacionDeNuloParametroFechaLanzamiento_lanzarExcepcionNulo() {
 
         //Arrange
         fechaLanzamiento = null
@@ -106,7 +144,7 @@ class PeliculaTest {
     }
 
     @Test
-    fun initValidacionDeNulo_parametroOverviewNulo_LanzarExcepcionNulo() {
+    fun init_validacionDeNuloParametroDescripcionNulo_lanzarExcepcionNulo() {
 
         //Arrange
         descripcion = null
