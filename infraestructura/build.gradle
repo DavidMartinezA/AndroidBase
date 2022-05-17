@@ -36,15 +36,24 @@ android {
     }
 }
 
+
 dependencies {
+
     def versionRoom = "2.4.2"
     def versionCoroutines = "1.6.1"
     def versionTestRunner = "1.4.0"
     def versionHilt = "2.41"
     def versionRetrofit = "2.9.0"
     def versionOkhttp = "4.9.2"
+    def versionOkhttp3 = "4.9.3"
     def versionGson = "2.8.6"
     def versionJunit = "4.13.2"
+    def versionJunitTest = "1.1.3"
+    def versionEsspreso = "3.4.0"
+    def versionMockito = "4.5.1"
+    def versionMockitoTest = "2.13.0"
+    def versionGoogleTruth = "1.1"
+    def versionLegacySupport= "1.0.0"
 
     // Dependencias de modulos
     implementation project(path: ':dominio')
@@ -63,27 +72,26 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$versionRetrofit"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$versionOkhttp"
     implementation "com.squareup.okhttp3:logging-interceptor:$versionOkhttp"
-    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation "com.squareup.okhttp3:okhttp:$versionOkhttp3"
    " implementation 'com.google.code.gson:gson:$versionGson'"
 
     //test
     testImplementation "junit:junit:$versionJunit"
-    testImplementation "com.google.truth:truth:1.1"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation "com.google.truth:truth:$versionGoogleTruth"
+    implementation "androidx.legacy:legacy-support-v4:$versionLegacySupport"
     implementation "androidx.test:core-ktx:$versionTestRunner"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versionEsspreso"
     androidTestImplementation "androidx.test:runner:$versionTestRunner"
-    androidTestImplementation 'androidx.test:rules:1.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation "androidx.test:rules:$versionTestRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$versionEsspreso"
+    androidTestImplementation "androidx.test.ext:junit:$versionJunitTest"
     androidTestImplementation "androidx.room:room-testing:$versionRoom"
-    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.9.3'
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$versionOkhttp3"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versionCoroutines"
 
     // Mockito
-    testImplementation "org.mockito:mockito-core:4.5.1"
-    testImplementation 'org.mockito:mockito-inline:2.13.0'
-    androidTestImplementation "org.mockito:mockito-android:4.5.1"
+    testImplementation "org.mockito:mockito-core:$versionMockito"
+    testImplementation "org.mockito:mockito-inline:$versionMockitoTest"
+    androidTestImplementation "org.mockito:mockito-android:$versionMockito"
 
 }
