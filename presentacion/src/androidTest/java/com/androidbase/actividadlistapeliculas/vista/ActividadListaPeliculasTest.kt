@@ -2,7 +2,7 @@ package com.androidbase.actividadlistapeliculas.vista
 
 import androidx.test.espresso.intent.Intents
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.androidbase.actividadlistapeliculas.pageobject.ActividadListaPeliculasPageObject
+import com.androidbase.actividadlistapeliculas.vista.pageobject.ActividadListaPeliculasPageObject
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

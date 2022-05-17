@@ -17,15 +17,15 @@
         <activity
             android:name="com.androidbase.actividadlistapeliculas.vista.ActividadListaPeliculas"
             android:configChanges="screenSize|orientation"
-            android:exported="true">
+            android:exported="true"
+            android:permission="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".detallepeliculas.ActividadDetallePelicula"
-            android:configChanges="screenSize|orientation"
-            android:exported="false" />
+            android:name=".actividaddetallepeliculas.ActividadDetallePelicula"
+            android:configChanges="screenSize|orientation" />
     </application>
 </manifest>

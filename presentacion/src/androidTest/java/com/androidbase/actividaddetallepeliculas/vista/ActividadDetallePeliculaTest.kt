@@ -1,10 +1,10 @@
-package com.androidbase.detallepeliculas.vista
+package com.androidbase.actividaddetallepeliculas.vista
 
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.androidbase.actividadlistapeliculas.pageobject.ActividadListaPeliculasPageObject
+import com.androidbase.actividaddetallepeliculas.pageobject.ActividadListaPeliculasDetallePageObject
 import com.androidbase.actividadlistapeliculas.vista.ActividadListaPeliculas
-import com.androidbase.detallepeliculas.pageobject.ActividadListaPeliculasDetallePageObject
+import com.androidbase.actividadlistapeliculas.vista.pageobject.ActividadListaPeliculasPageObject
 import org.junit.Rule
 import org.junit.Test
 

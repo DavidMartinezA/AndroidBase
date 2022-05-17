@@ -1,4 +1,4 @@
-package com.androidbase.listapeliculas.viewmodel
+package com.androidbase.actividadlistapeliculas.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
