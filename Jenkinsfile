@@ -24,7 +24,7 @@ pipeline {
      }
    }
 
-    stage('Unit Tests') {
+    stage('Tests') {
       steps{
         echo "------------>Unit Tests<------------"
         sh './gradlew clean'
