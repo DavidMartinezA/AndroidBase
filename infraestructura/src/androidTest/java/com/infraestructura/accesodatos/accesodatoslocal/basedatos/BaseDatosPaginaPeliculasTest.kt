@@ -24,7 +24,7 @@ class BaseDatosPaginaPeliculasTest {
     private lateinit var baseDatosPelicula: BaseDatosPaginaPeliculas
     private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
     private var pagina = 1
-    private var resultadoPeliculas: ArrayList<Pelicula> = ArrayList()
+    private var resultadoPeliculas: ArrayList<Pelicula> = arrayListOf(pelicula)
     private var paginasTotales = 100
     private var resultadoTotal = 1000
     private val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
@@ -55,7 +55,6 @@ class BaseDatosPaginaPeliculasTest {
 
             //Assert
             assertEquals(resultadoPeliculas, paginaPeliculasDao.obtener().last().resultadoPeliculas!!)
-            assertEquals(1, paginaPeliculasDao.obtener().last().resultadoPeliculas!!.size)
         }
     }
 
@@ -97,16 +96,12 @@ class BaseDatosPaginaPeliculasTest {
     fun obtenerPaginaPeliculasDao_consultarPaginaConInformacionVacia_retornaPaginaConInformacionVacia() {
 
         //Arrange
-        paginaPeliculasDao = baseDatosPelicula.paginaPeliculasdao()
-        val entidadBaseDatosPaginaPeliculas = TraductorPagina().desdeDominioABaseDatos(paginado)
-
         //Act
-        runTest {
-            paginaPeliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
-            val respuesta = paginaPeliculasDao.obtener()
-
-            //Assert
-            assertTrue(respuesta.last().resultadoPeliculas!!.isEmpty())
+        //Assert
+        assertThrows(Exception::class.java) {
+            runTest {
+                paginaPeliculasDao.obtener()
+            }
         }
     }
 
