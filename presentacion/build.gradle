@@ -96,7 +96,7 @@ dependencies {
 }
 
 // tarea para los reportes de analisis de codigo
-task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTest',':presentacion:connectedAndroidTest',
+task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTest',
                                                       ':infraestructura:connectedAndroidTest']) {
 
     def moduloDominio = project(':dominio')
