@@ -1,34 +1,40 @@
 package com.infraestructura.accesodatos.compartido.repositorio
 
-import com.dominio.peliculas.modelo.PaginadoPeliculas
+import com.dominio.peliculas.modelo.Pelicula
 import com.dominio.peliculas.repositorio.RepositorioPelicula
 import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
-import java.time.LocalDateTime
 import javax.inject.Inject
 
 class ConsultaPeliculasProxy @Inject constructor(
-    baseDatosPaginaPeliculas: BaseDatosPaginaPeliculas,
+    val baseDatosPaginaPeliculas: BaseDatosPaginaPeliculas,
     servicioApi: ServicioApi,
 ) : RepositorioPelicula {
 
     private val repositorioConsultaPeliculas = RepositorioConsultaPeliculas(baseDatosPaginaPeliculas, servicioApi)
-
-    override suspend fun guardarPaginaPeliculas(paginaPeliculas: PaginadoPeliculas) {
-        repositorioConsultaPeliculas.guardarPaginaPeliculas(paginaPeliculas)
+    private lateinit var respuesta: List<Pelicula>
+    override suspend fun guardarPaginaPeliculas(pelicula: Pelicula) {
+        repositorioConsultaPeliculas.guardarPaginaPeliculas(pelicula)
     }
 
-    override suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> {
+    override suspend fun obtenerPaginaPeliculas(): List<Pelicula> {
+        /*   val diaHoy = LocalDateTime.now().dayOfWeek.value
 
-        val paginaPeliculasRoom = repositorioConsultaPeliculas.obtenerPaginaPeliculas()
-        val paginaPeliculasApi = repositorioConsultaPeliculas.obtenerPeliculasApi()
-        val diaHoy = LocalDateTime.now().dayOfWeek.value
-
-        return if (paginaPeliculasRoom.isNullOrEmpty() || paginaPeliculasRoom.last().diaRegistro != diaHoy) {
-            repositorioConsultaPeliculas.guardarPaginaPeliculas(paginaPeliculasApi)
-            listOf(paginaPeliculasApi)
-        } else {
-            paginaPeliculasRoom
-        }
+              if (!repositorioConsultaPeliculas.obtenerPaginaPeliculas().isNullOrEmpty() ||
+                  repositorioConsultaPeliculas.obtenerPaginaPeliculas().last().diaRegistro == diaHoy
+              ) {
+                  val paginaPeliculasRoom = repositorioConsultaPeliculas.obtenerPaginaPeliculas()
+                  respuesta = paginaPeliculasRoom
+              } else {
+                  if (repositorioConsultaPeliculas.obtenerPeliculasApi().isNullOrEmpty()) {
+                      throw ExcepcionErrorRetrofit()
+                  } else {
+                      val paginaPeliculasApi = repositorioConsultaPeliculas.obtenerPeliculasApi()
+                      respuesta = paginaPeliculasApi
+                      //baseDatosPaginaPeliculas.peliculasDao().borrar()
+                      respuesta.forEach { guardarPaginaPeliculas(it) }
+                  }
+          }*/
+        return repositorioConsultaPeliculas.obtenerPeliculasApi()
     }
 }
