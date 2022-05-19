@@ -15,18 +15,18 @@ class ListaPeliculasViewModel @Inject constructor(private val repositorioConsult
 
     private val cambioUi: MutableStateFlow<List<Pelicula>> = MutableStateFlow(emptyList())
     var listaPeliculas: StateFlow<List<Pelicula>> = cambioUi
-    private val listaUi: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    var listavacia: StateFlow<Boolean> = listaUi
+    private val listaUi: MutableStateFlow<String> = MutableStateFlow("")
+    var listavacia: StateFlow<String> = listaUi
 
     fun mostrarListaPeliculas() = viewModelScope.launch {
-        val lista = repositorioConsulta.obtenerPaginaPeliculas()
-        cambioUi.value = lista
-        /*    try {
-                val lista = repositorioConsulta.obtenerPaginaPeliculas()
-                cambioUi.value = lista
-            } catch (excepcion: Exception) {
-                listaUi.value = true
-            }*/
+
+        try {
+            val lista = repositorioConsulta.obtenerPaginaPeliculas()
+            cambioUi.value = lista
+        } catch (excepcion: Exception) {
+            listaUi.value = "No se Puede Mostrar La Lista"
+
+        }
     }
 
 }
