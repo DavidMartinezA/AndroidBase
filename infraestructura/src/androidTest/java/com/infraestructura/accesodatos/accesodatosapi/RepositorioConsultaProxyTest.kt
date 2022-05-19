@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.dominio.peliculas.modelo.PaginadoPeliculas
 import com.dominio.peliculas.modelo.Pelicula
 import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
 import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.TraductorPagina
@@ -16,7 +15,6 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Assert
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Test
@@ -35,7 +33,7 @@ class RepositorioConsultaProxyTest {
     private lateinit var servicioApi: ServicioApi
     private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
     private var resultadoPeliculas: ArrayList<Pelicula> = arrayListOf(pelicula)
-    private val paginado = PaginadoPeliculas(1, resultadoPeliculas, 100, 1000)
+
 
     @Before
     fun configuracionInicial() {
@@ -75,25 +73,25 @@ class RepositorioConsultaProxyTest {
     fun obtenerPaginaPeliculasApi_respuestaPaginaJson_paginaActualUno() = runTest {
 
         //Arrange
-        resultadoPeliculas.add(pelicula)
+
         servicioFakeWeb.enqueue(MockResponse().setBody(leerJson()))
 
         //Act
-        val respuesta = servicioApi.obtenerPagina().page
+        val respuesta = servicioApi.obtenerPagina().resultadoPeliculas
 
         //Assert
-        assertEquals(respuesta, 1)
+        assertFalse(respuesta.isNullOrEmpty())
     }
 
     @Test
     fun obtenerPaginaPeliculas_paginaPeliculaCorrecta_paginaPelicula() = runTest {
 
         //Arrange
-        baseDatosEntidades.paginaPeliculasdao().insertar(TraductorPagina().desdeDominioABaseDatos(paginado))
+        resultadoPeliculas.forEach { baseDatosEntidades.peliculasDao().insertar(TraductorPagina().desdeDominioABaseDatos(it)) }
         //Act
         val respuesta = consultaPeliculasProxy.obtenerPaginaPeliculas()
         //Assert
-        assertFalse(respuesta.last().results!!.isEmpty())
+        assertFalse(respuesta.isEmpty())
     }
 
     @Test

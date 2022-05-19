@@ -4,10 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.dominio.peliculas.modelo.PaginadoPeliculas
 import com.dominio.peliculas.modelo.Pelicula
 import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.TraductorPagina
-import com.infraestructura.accesodatos.accesodatoslocal.dao.PaginaPeliculasDao
+import com.infraestructura.accesodatos.accesodatoslocal.dao.PeliculasDao
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -20,14 +19,11 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class BaseDatosPaginaPeliculasTest {
 
-    private lateinit var paginaPeliculasDao: PaginaPeliculasDao
+    private lateinit var peliculasDao: PeliculasDao
     private lateinit var baseDatosPelicula: BaseDatosPaginaPeliculas
     private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
-    private var pagina = 1
     private var resultadoPeliculas: ArrayList<Pelicula> = arrayListOf(pelicula)
-    private var paginasTotales = 100
-    private var resultadoTotal = 1000
-    private val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+
 
     @Before
     fun crecionBaseDatos() {
@@ -46,15 +42,15 @@ class BaseDatosPaginaPeliculasTest {
 
         //Arrange
         resultadoPeliculas.add(pelicula)
-        paginaPeliculasDao = baseDatosPelicula.paginaPeliculasdao()
-        val entidadBaseDatosPaginaPeliculas = TraductorPagina().desdeDominioABaseDatos(paginado)
+        peliculasDao = baseDatosPelicula.peliculasDao()
+        val entidadBaseDatosPaginaPeliculas = TraductorPagina().desdeDominioABaseDatos(pelicula)
 
         //Act
         runTest {
-            paginaPeliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
+            peliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
 
             //Assert
-            assertEquals(resultadoPeliculas, paginaPeliculasDao.obtener().last().resultadoPeliculas!!)
+            assertEquals(pelicula.titulo, peliculasDao.obtener().last().titulo)
         }
     }
 
@@ -62,15 +58,15 @@ class BaseDatosPaginaPeliculasTest {
     fun insertarPaginaPeliculasDao_guardarPaginaConInformacionVacia_paginaGuardada() {
 
         //Arrange
-        paginaPeliculasDao = baseDatosPelicula.paginaPeliculasdao()
-        val entidadBaseDatosPaginaPeliculas = TraductorPagina().desdeDominioABaseDatos(paginado)
+        peliculasDao = baseDatosPelicula.peliculasDao()
+        val entidadBaseDatosPaginaPeliculas = TraductorPagina().desdeDominioABaseDatos(pelicula)
 
         //Act
         runTest {
-            paginaPeliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
+            peliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
 
             //Assert
-            assertEquals(resultadoPeliculas, paginaPeliculasDao.obtener().last().resultadoPeliculas)
+            assertEquals(pelicula.titulo, peliculasDao.obtener()[0].titulo)
         }
     }
 
@@ -79,28 +75,28 @@ class BaseDatosPaginaPeliculasTest {
 
         //Arrange
         resultadoPeliculas.add(pelicula)
-        paginaPeliculasDao = baseDatosPelicula.paginaPeliculasdao()
-        val entidadBaseDatosPaginaPeliculas = TraductorPagina().desdeDominioABaseDatos(paginado)
+        peliculasDao = baseDatosPelicula.peliculasDao()
+        val entidadBaseDatosPaginaPeliculas = TraductorPagina().desdeDominioABaseDatos(pelicula)
 
         //Act
         runTest {
-            paginaPeliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
-            val respuesta = paginaPeliculasDao.obtener()
+            peliculasDao.insertar(entidadBaseDatosPaginaPeliculas)
+            val respuesta = peliculasDao.obtener()
 
             //Assert
-            assertFalse(respuesta.last().resultadoPeliculas!!.isEmpty())
+            assertFalse(respuesta.isNullOrEmpty())
         }
     }
 
     @Test
-    fun obtenerPaginaPeliculasDao_consultarPaginaConInformacionVacia_retornaPaginaConInformacionVacia() {
+    fun obtenerPaginaPeliculasDao_consultarPaginaConInformacionVacia_LanzarExcepcion() {
 
         //Arrange
         //Act
         //Assert
         assertThrows(Exception::class.java) {
             runTest {
-                paginaPeliculasDao.obtener()
+                peliculasDao.obtener()
             }
         }
     }
