@@ -7,7 +7,7 @@ import org.junit.Test
 
 class PeliculaTest {
 
-    private var id: Int? = 1
+    private var id: Int = 1
     private var idioma: String? = "español"
     private var titulo: String? = "Encanto"
     private var imagenUrl: String? = "url"
@@ -24,7 +24,7 @@ class PeliculaTest {
         val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
-        assertEquals(pelicula.original_language, idioma)
+        assertEquals(pelicula.lenguaje, idioma)
     }
 
     @Test
@@ -35,7 +35,7 @@ class PeliculaTest {
         val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
-        assertEquals(pelicula.original_title, titulo)
+        assertEquals(pelicula.titulo, titulo)
     }
 
     @Test
@@ -46,7 +46,7 @@ class PeliculaTest {
         val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
-        assertEquals(pelicula.poster_path, imagenUrl)
+        assertEquals(pelicula.imagenUrl, imagenUrl)
 
     }
 
@@ -58,7 +58,7 @@ class PeliculaTest {
         val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
-        assertEquals(pelicula.vote_average, calificacion)
+        assertEquals(pelicula.votacion, calificacion)
     }
 
     @Test
@@ -69,7 +69,7 @@ class PeliculaTest {
         val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
-        assertEquals(pelicula.release_date, fechaLanzamiento)
+        assertEquals(pelicula.fechaLanzamiento, fechaLanzamiento)
     }
 
     @Test
@@ -80,7 +80,7 @@ class PeliculaTest {
         val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
-        assertEquals(pelicula.overview, descripcion)
+        assertEquals(pelicula.descripcion, descripcion)
     }
 
     @Test
