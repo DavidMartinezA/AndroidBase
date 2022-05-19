@@ -26,8 +26,10 @@ class RepositorioConsultaPeliculas @Inject constructor(
     }
 
     suspend fun obtenerPeliculasApi(): List<Pelicula> {
+        peliculasDao.borrar()
         val dto = servicioApi.obtenerPagina()
         return dto.resultadoPeliculas?.let { traductorPagina.desdeApiADominio(it) } ?: throw ExcepcionErrorRetrofit()
+
     }
 
 }

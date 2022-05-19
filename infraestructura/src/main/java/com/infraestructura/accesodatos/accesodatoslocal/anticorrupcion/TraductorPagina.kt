@@ -25,9 +25,9 @@ class TraductorPagina {
         listaEntidadBaseDatos.map {
             val peliculaDominio = Pelicula(
                 it.id,
+                it.lenguaje,
                 it.titulo,
                 it.imagen,
-                it.lenguaje,
                 it.votacion,
                 it.fechaLanzamiento,
                 it.descripcion,
