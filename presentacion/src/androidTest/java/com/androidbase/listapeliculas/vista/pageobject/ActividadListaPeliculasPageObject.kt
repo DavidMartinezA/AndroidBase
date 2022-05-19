@@ -1,4 +1,4 @@
-package com.androidbase.actividadlistapeliculas.vista.pageobject
+package com.androidbase.listapeliculas.vista.pageobject
 
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.androidbase.R
-import com.androidbase.actividaddetallepeliculas.ActividadDetallePelicula
+import com.androidbase.listapeliculas.vista.actividaddetallepeliculas.ActividadDetallePelicula
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers

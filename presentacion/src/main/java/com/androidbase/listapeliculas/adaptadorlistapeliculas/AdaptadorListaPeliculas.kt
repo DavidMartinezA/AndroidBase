@@ -1,4 +1,4 @@
-package com.androidbase.actividadlistapeliculas.adaptadorlistapeliculas
+package com.androidbase.listapeliculas.adaptadorlistapeliculas
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.androidbase.R
-import com.androidbase.actividaddetallepeliculas.ActividadDetallePelicula
+import com.androidbase.listapeliculas.vista.actividaddetallepeliculas.ActividadDetallePelicula
 import com.dominio.peliculas.modelo.Pelicula
 import com.infraestructura.accesodatos.accesodatosapi.urlbase.PuntoFinal.Companion.URL_BASE_IMAGEN
 import com.squareup.picasso.Picasso
@@ -35,10 +35,10 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
     class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(pelicula: Pelicula) {
 
-            view.findViewById<TextView>(R.id.textoPeliculaTextView).text = pelicula.original_title
-            view.findViewById<TextView>(R.id.textoIdiomaTextView).text = pelicula.original_language
-            view.findViewById<TextView>(R.id.textoVotacionTextView).text = pelicula.vote_average.toString()
-            val imagenUrl = pelicula.poster_path
+            view.findViewById<TextView>(R.id.textoPeliculaTextView).text = pelicula.titulo
+            view.findViewById<TextView>(R.id.textoIdiomaTextView).text = pelicula.lenguaje
+            view.findViewById<TextView>(R.id.textoVotacionTextView).text = pelicula.votacion.toString()
+            val imagenUrl = pelicula.imagenUrl
             val imagen = view.findViewById<ImageView>(R.id.cartelPeliculaImageView)
 
             Picasso.get()
@@ -50,12 +50,12 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
             view.findViewById<Button>(R.id.btn_ver_detalle).setOnClickListener {
 
                 val intent = Intent(view.context, ActividadDetallePelicula::class.java)
-                intent.putExtra(TITULO, pelicula.original_title)
-                intent.putExtra(IDIOMA, pelicula.original_language)
-                intent.putExtra(IMAGEN, pelicula.poster_path)
-                intent.putExtra(CALIFICACION, pelicula.vote_average.toString())
-                intent.putExtra(FECHA_LANZAMIENTO, pelicula.release_date)
-                intent.putExtra(DESCRIPCION, pelicula.overview)
+                intent.putExtra(TITULO, pelicula.titulo)
+                intent.putExtra(IDIOMA, pelicula.lenguaje)
+                intent.putExtra(IMAGEN, pelicula.imagenUrl)
+                intent.putExtra(CALIFICACION, pelicula.votacion.toString())
+                intent.putExtra(FECHA_LANZAMIENTO, pelicula.fechaLanzamiento)
+                intent.putExtra(DESCRIPCION, pelicula.descripcion)
                 view.context.startActivity(intent)
             }
         }

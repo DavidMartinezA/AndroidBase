@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBase">
         <activity
-            android:name="com.androidbase.actividadlistapeliculas.vista.ActividadListaPeliculas"
+            android:name="com.androidbase.listapeliculas.vista.actividadlistapeliculas.ActividadListaPeliculas"
             android:configChanges="screenSize|orientation"
             android:exported="true">
             <intent-filter>
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".actividaddetallepeliculas.ActividadDetallePelicula"
+            android:name=".listapeliculas.vista.actividaddetallepeliculas.ActividadDetallePelicula"
             android:configChanges="screenSize|orientation" />
     </application>
 </manifest>
