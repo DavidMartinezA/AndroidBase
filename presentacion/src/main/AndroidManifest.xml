@@ -8,14 +8,13 @@
 
     <application
         android:name=".inyecciondependencias.AplicacionAndroidBase"
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBase">
         <activity
-            android:name="com.androidbase.actividadlistapeliculas.vista.ActividadListaPeliculas"
+            android:name="com.androidbase.listapeliculas.vista.actividadlistapeliculas.ActividadListaPeliculas"
             android:configChanges="screenSize|orientation"
             android:exported="true">
             <intent-filter>
@@ -24,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".actividaddetallepeliculas.ActividadDetallePelicula"
+            android:name=".listapeliculas.vista.actividaddetallepeliculas.ActividadDetallePelicula"
             android:configChanges="screenSize|orientation" />
     </application>
 </manifest>

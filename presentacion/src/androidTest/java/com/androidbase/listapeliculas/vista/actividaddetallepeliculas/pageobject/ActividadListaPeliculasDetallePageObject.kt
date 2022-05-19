@@ -1,4 +1,4 @@
-package com.androidbase.actividaddetallepeliculas.pageobject
+package com.androidbase.listapeliculas.vista.actividaddetallepeliculas.pageobject
 
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions.matches

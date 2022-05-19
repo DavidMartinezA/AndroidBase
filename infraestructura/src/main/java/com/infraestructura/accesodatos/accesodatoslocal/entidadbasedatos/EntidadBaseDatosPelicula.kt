@@ -2,16 +2,17 @@ package com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.dominio.peliculas.modelo.Pelicula
 
 @Entity
 class EntidadBaseDatosPelicula(
 
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var pagina: Int?,
-    var resultadoPeliculas: List<Pelicula>?,
-    var paginasTotales: Int?,
-    var resultadoTotal: Int?,
+    var lenguaje: String?,
+    var titulo: String?,
+    var imagen: String?,
+    var votacion: Float?,
+    var fechaLanzamiento: String?,
+    var descripcion: String?,
     var diaRegistro: Int,
 )

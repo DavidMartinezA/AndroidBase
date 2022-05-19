@@ -7,12 +7,15 @@ import androidx.room.Query
 import com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos.EntidadBaseDatosPelicula
 
 @Dao
-interface PaginaPeliculasDao {
+interface PeliculasDao {
 
-    @Query("SELECT * FROM EntidadBaseDatosPelicula ORDER BY id asc")
+    @Query("SELECT * FROM EntidadBaseDatosPelicula")
     suspend fun obtener(): List<EntidadBaseDatosPelicula>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("DELETE  FROM EntidadBaseDatosPelicula ")
+    suspend fun borrar()
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertar(entidadBaseDatosPelicula: EntidadBaseDatosPelicula)
 
 }

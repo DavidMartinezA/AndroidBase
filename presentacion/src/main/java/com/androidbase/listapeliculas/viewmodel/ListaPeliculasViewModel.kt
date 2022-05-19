@@ -1,4 +1,4 @@
-package com.androidbase.actividadlistapeliculas.viewmodel
+package com.androidbase.listapeliculas.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,17 +19,14 @@ class ListaPeliculasViewModel @Inject constructor(private val repositorioConsult
     var listavacia: StateFlow<Boolean> = listaUi
 
     fun mostrarListaPeliculas() = viewModelScope.launch {
-
-        try {
-            val lista = repositorioConsulta.obtenerPaginaPeliculas().last().results
-            if (!lista.isNullOrEmpty()) {
+        val lista = repositorioConsulta.obtenerPaginaPeliculas()
+        cambioUi.value = lista
+        /*    try {
+                val lista = repositorioConsulta.obtenerPaginaPeliculas()
                 cambioUi.value = lista
-            } else {
+            } catch (excepcion: Exception) {
                 listaUi.value = true
-            }
-        } catch (excepcion: Exception) {
-            listaUi.value = true
-        }
+            }*/
     }
 
 }

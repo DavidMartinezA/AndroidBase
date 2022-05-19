@@ -104,13 +104,13 @@ task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTes
 
     def directoriosArchivosClasses = layout.files(
             "$moduloDominio.buildDir/tmp/kotlin-classes/debug/com/dominio",
-            "$moduloInfraestructura.buildDir/tmp/kotlin-classes/debug/com/infraestructura/accesodatos",
+            "$moduloInfraestructura.buildDir/tmp/kotlin-classes/debug/com/infraestructura",
             "$buildDir/tmp/kotlin-classes/debug/com/androidbase"
     )
 
     def archivosPropios = layout.files(
             "$moduloDominio.projectDir/src/main/java/com/dominio",
-            "$moduloInfraestructura.projectDir/src/main/java/com/infraestructura/accesodatos",
+            "$moduloInfraestructura.projectDir/src/main/java/com/infraestructura",
             "$projectDir/src/main/java/com/androidbase"
     )
 

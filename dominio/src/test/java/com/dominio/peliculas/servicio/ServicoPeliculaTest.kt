@@ -1,6 +1,5 @@
 package com.dominio.peliculas.servicio
 
-import com.dominio.peliculas.modelo.PaginadoPeliculas
 import com.dominio.peliculas.modelo.Pelicula
 import com.dominio.peliculas.repositorio.RepositorioPelicula
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,11 +25,8 @@ class ServicoPeliculaTest {
 
     private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url",
         8.55F, "2022", "pelicula colombiana")
-    private var pagina: Int? = 1
     private var resultadoPeliculas: ArrayList<Pelicula>? = arrayListOf(pelicula)
-    private var paginasTotales: Int? = 100
-    private var resultadoTotal: Int? = 1000
-    private val paginado = PaginadoPeliculas(pagina, resultadoPeliculas, paginasTotales, resultadoTotal)
+
 
     @Before
     fun before() {
@@ -41,13 +37,13 @@ class ServicoPeliculaTest {
     fun consultarPaginaPeliculas_parametrosCorrectos_retornaPaginaPeliculas() = runTest {
 
         //Arrange
-        Mockito.`when`(repositorioPeliculas.obtenerPaginaPeliculas()).thenReturn(listOf(paginado))
+        Mockito.`when`(repositorioPeliculas.obtenerPaginaPeliculas()).thenReturn(resultadoPeliculas)
 
         //Act
         val consultarPaginaPeliculas = ServicoPelicula(repositorioPeliculas).consultarPaginaPeliculas()
 
         //Assert
-        assertEquals(consultarPaginaPeliculas, listOf(paginado))
+        assertEquals(consultarPaginaPeliculas, listOf(pelicula))
 
     }
 
@@ -56,10 +52,10 @@ class ServicoPeliculaTest {
 
         //Arrange
         //Act
-        ServicoPelicula(repositorioPeliculas).guardarPaginaPeliculas(paginado)
+        resultadoPeliculas!!.forEach { ServicoPelicula(repositorioPeliculas).guardarPaginaPeliculas(it) }
 
         //Assert
-        verify(repositorioPeliculas, times(1)).guardarPaginaPeliculas(paginado)
+        verify(repositorioPeliculas, times(1)).guardarPaginaPeliculas(pelicula)
     }
 
 

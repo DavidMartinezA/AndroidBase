@@ -1,4 +1,4 @@
-package com.androidbase.actividadlistapeliculas.vista
+package com.androidbase.listapeliculas.vista.actividadlistapeliculas
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidbase.R
-import com.androidbase.actividadlistapeliculas.adaptadorlistapeliculas.AdaptadorListaPeliculas
-import com.androidbase.actividadlistapeliculas.viewmodel.ListaPeliculasViewModel
 import com.androidbase.databinding.ActividadListaPeliculasBinding
+import com.androidbase.listapeliculas.adaptadorlistapeliculas.AdaptadorListaPeliculas
+import com.androidbase.listapeliculas.viewmodel.ListaPeliculasViewModel
 import com.dominio.peliculas.modelo.Pelicula
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

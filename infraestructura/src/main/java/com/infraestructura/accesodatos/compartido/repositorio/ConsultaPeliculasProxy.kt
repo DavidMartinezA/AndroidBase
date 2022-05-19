@@ -1,7 +1,8 @@
 package com.infraestructura.accesodatos.compartido.repositorio
 
-import com.dominio.peliculas.modelo.PaginadoPeliculas
+import com.dominio.peliculas.modelo.Pelicula
 import com.dominio.peliculas.repositorio.RepositorioPelicula
+import com.infraestructura.accesodatos.accesodatosapi.excepcion.ExcepcionErrorRetrofit
 import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
 import java.time.LocalDateTime
@@ -13,22 +14,27 @@ class ConsultaPeliculasProxy @Inject constructor(
 ) : RepositorioPelicula {
 
     private val repositorioConsultaPeliculas = RepositorioConsultaPeliculas(baseDatosPaginaPeliculas, servicioApi)
-
-    override suspend fun guardarPaginaPeliculas(paginaPeliculas: PaginadoPeliculas) {
-        repositorioConsultaPeliculas.guardarPaginaPeliculas(paginaPeliculas)
+    override suspend fun guardarPaginaPeliculas(pelicula: Pelicula) {
+        repositorioConsultaPeliculas.guardarPaginaPeliculas(pelicula)
     }
 
-    override suspend fun obtenerPaginaPeliculas(): List<PaginadoPeliculas> {
-
-        val paginaPeliculasRoom = repositorioConsultaPeliculas.obtenerPaginaPeliculas()
-        val paginaPeliculasApi = repositorioConsultaPeliculas.obtenerPeliculasApi()
+    override suspend fun obtenerPaginaPeliculas(): List<Pelicula> {
         val diaHoy = LocalDateTime.now().dayOfWeek.value
 
-        return if (paginaPeliculasRoom.isNullOrEmpty() || paginaPeliculasRoom.last().diaRegistro != diaHoy) {
-            repositorioConsultaPeliculas.guardarPaginaPeliculas(paginaPeliculasApi)
-            listOf(paginaPeliculasApi)
+        return if (repositorioConsultaPeliculas.obtenerPaginaPeliculas().isNotEmpty() &&
+            repositorioConsultaPeliculas.obtenerPaginaPeliculas().first().diaRegistro == diaHoy
+        ) {
+            repositorioConsultaPeliculas.obtenerPaginaPeliculas()
         } else {
-            paginaPeliculasRoom
+            if (repositorioConsultaPeliculas.obtenerPeliculasApi().isNullOrEmpty()) {
+                throw ExcepcionErrorRetrofit()
+            } else {
+                val paginaPeliculasApi = repositorioConsultaPeliculas.obtenerPeliculasApi()
+                paginaPeliculasApi.forEach { guardarPaginaPeliculas(it) }
+
+                repositorioConsultaPeliculas.obtenerPaginaPeliculas()
+            }
         }
+
     }
 }

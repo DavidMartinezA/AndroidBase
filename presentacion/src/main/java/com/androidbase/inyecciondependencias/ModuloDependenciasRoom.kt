@@ -26,6 +26,7 @@ abstract class ModuloDependenciasRoom {
             return Room.databaseBuilder(
                 contexto, BaseDatosPaginaPeliculas::class.java,
                 contexto.resources.getString(R.string.nombre_base_datos))
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }

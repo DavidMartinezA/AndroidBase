@@ -1,15 +1,17 @@
 package com.dominio.peliculas.modelo
 
 import com.dominio.peliculas.excepcion.ExcepcionNulo
+import java.time.LocalDateTime
 
 data class Pelicula(
-    val id: Int?,
-    var original_language: String?,
-    var original_title: String?,
-    var poster_path: String?,
-    var vote_average: Float?,
-    var release_date: String?,
-    var overview: String?,
+    val id: Int,
+    var lenguaje: String?,
+    var titulo: String?,
+    var imagenUrl: String?,
+    var votacion: Float?,
+    var fechaLanzamiento: String?,
+    var descripcion: String?,
+    var diaRegistro: Int = LocalDateTime.now().dayOfWeek.value,
 ) {
     init {
         if (validacionNulo()) throw ExcepcionNulo()
@@ -18,8 +20,8 @@ data class Pelicula(
     //  todo val validacionArgumentos : ArrayList<String?> = arrayListOf( original_language, original_title,poster_path,release_date,overview)
 
     private fun validacionNulo(): Boolean =
-        vote_average == null || original_language.isNullOrEmpty() || original_title.isNullOrEmpty() ||
-                poster_path.isNullOrEmpty() || release_date.isNullOrEmpty() ||
-                overview.isNullOrEmpty()
+        votacion == null || lenguaje.isNullOrEmpty() || titulo.isNullOrEmpty() ||
+                imagenUrl.isNullOrEmpty() || fechaLanzamiento.isNullOrEmpty() ||
+                descripcion.isNullOrEmpty()
 
 }
