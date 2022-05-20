@@ -1,7 +1,6 @@
 package com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion
 
 import com.dominio.peliculas.modelo.Pelicula
-import com.infraestructura.accesodatos.accesodatosapi.dto.ListaResultadosDto
 import com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos.EntidadBaseDatosPelicula
 
 class TraductorPagina {
@@ -32,25 +31,6 @@ class TraductorPagina {
                 it.fechaLanzamiento,
                 it.descripcion,
                 it.diaRegistro
-            )
-            listaDominio.add(peliculaDominio)
-        }
-        return listaDominio
-    }
-
-    fun desdeApiADominio(listaApi: List<ListaResultadosDto>): List<Pelicula> {
-
-        val listaDominio = ArrayList<Pelicula>()
-        listaApi.map {
-            val peliculaDominio = Pelicula(
-                id = 0,
-                it.lenguaje,
-                it.titulo,
-                it.imagenUrl,
-                it.votacion,
-                it.fechaLanzamiento,
-                it.descripcion,
-                diaRegistro = 0
             )
             listaDominio.add(peliculaDominio)
         }
