@@ -1,49 +1,50 @@
 package com.dominio.peliculas.modelo
 
-import com.dominio.peliculas.excepcion.ExcepcionNulo
+import com.dominio.peliculas.excepcion.ExcepcionCamposVacios
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test
 
+
 class PeliculaTest {
 
     private var id: Int = 1
-    private var idioma: String? = "español"
-    private var titulo: String? = "Encanto"
-    private var imagenUrl: String? = "url"
-    private var calificacion: Float? = 8.55F
-    private var fechaLanzamiento: String? = "2022"
-    private var descripcion: String? = "pelicula colombiana"
+    private var idioma: String = "español"
+    private var titulo: String = "Encanto"
+    private var imagenUrl: String = "url"
+    private var calificacion: Float = 8.55F
+    private var fechaLanzamiento: String = "2022"
+    private var descripcion: String = "pelicula colombiana"
 
 
     @Test
-    fun init_validacionDeNuloIdimaParametroCorrecto_idiomaPaginadoPeliculas() {
+    fun init_validacionIdimaParametroCorrecto_idiomaPeliculas() {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
         assertEquals(pelicula.lenguaje, idioma)
     }
 
     @Test
-    fun init_validacionDeNuloTituloParametroCorrecto_tituloPaginadoPeliculas() {
+    fun init_validacionTituloParametroCorrecto_tituloPeliculas() {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
         assertEquals(pelicula.titulo, titulo)
     }
 
     @Test
-    fun init_validacionDeNuloImagenUrlParametroCorrecto_imagenUrlPaginadoPeliculas() {
+    fun init_validacionImagenUrlParametroCorrecto_imagenUrlPeliculas() {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
         assertEquals(pelicula.imagenUrl, imagenUrl)
@@ -51,107 +52,83 @@ class PeliculaTest {
     }
 
     @Test
-    fun init_validacionDeNuloCalificacionParametroCorrecto_calificacionPaginadoPeliculas() {
+    fun init_validacionCalificacionParametroCorrecto_calificacionPeliculas() {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
         assertEquals(pelicula.votacion, calificacion)
     }
 
     @Test
-    fun init_validacionDeNuloFechaLanzamientoParametroCorrecto_fechaLanzamientoPaginadoPeliculas() {
+    fun init_validacionFechaLanzamientoParametroCorrecto_fechaLanzamientoPeliculas() {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
         assertEquals(pelicula.fechaLanzamiento, fechaLanzamiento)
     }
 
     @Test
-    fun init_validacionDeNuloDescripcionParametroCorrecto_descripcionPaginadoPeliculas() {
+    fun init_validacionDescripcionParametroCorrecto_descripcionPeliculas() {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
 
         //Assert
         assertEquals(pelicula.descripcion, descripcion)
     }
 
     @Test
-    fun init_validacionDeNuloParametroIdiomaNulo_lanzarExcepcionNulo() {
+    fun init_validacionoParametroIdiomaNulo_lanzarExcepcion() {
 
         //Arrange
-        idioma = null
+        idioma = ""
         //Act
         //Assert
-        assertThrows(ExcepcionNulo::class.java) {
-            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        assertThrows(ExcepcionCamposVacios::class.java) {
+            Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
     @Test
-    fun init_validacionDeNuloParametroTituloNulo_lanzarExcepcionNulo() {
+    fun init_validacionParametroImagenUrlNulo_lanzarExcepcion() {
 
         //Arrange
-        titulo = null
+        imagenUrl = ""
         //Act
         //Assert
-        assertThrows(ExcepcionNulo::class.java) {
-            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        assertThrows(ExcepcionCamposVacios::class.java) {
+            Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
     @Test
-    fun init_validacionDeNuloParametroImagenUrlNulo_lanzarExcepcionNulo() {
+    fun init_validacionParametroFechaLanzamiento_lanzarExcepcion() {
 
         //Arrange
-        imagenUrl = null
+        fechaLanzamiento = ""
         //Act
         //Assert
-        assertThrows(ExcepcionNulo::class.java) {
-            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        assertThrows(ExcepcionCamposVacios::class.java) {
+            Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 
     @Test
-    fun init_validacionDeNuloParametroCalificacionNulo_lanzarExcepcionNulo() {
+    fun init_validacionParametroDescripcionNulo_lanzarExcepcion() {
 
         //Arrange
-        calificacion = null
+        descripcion = ""
         //Act
         //Assert
-        assertThrows(ExcepcionNulo::class.java) {
-            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
-        }
-    }
-
-    @Test
-    fun init_validacionDeNuloParametroFechaLanzamiento_lanzarExcepcionNulo() {
-
-        //Arrange
-        fechaLanzamiento = null
-        //Act
-        //Assert
-        assertThrows(ExcepcionNulo::class.java) {
-            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
-        }
-    }
-
-    @Test
-    fun init_validacionDeNuloParametroDescripcionNulo_lanzarExcepcionNulo() {
-
-        //Arrange
-        descripcion = null
-        //Act
-        //Assert
-        assertThrows(ExcepcionNulo::class.java) {
-            Pelicula(id, idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        assertThrows(ExcepcionCamposVacios::class.java) {
+            Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
         }
     }
 }

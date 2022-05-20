@@ -1,27 +1,28 @@
 package com.dominio.peliculas.modelo
 
-import com.dominio.peliculas.excepcion.ExcepcionNulo
+import com.dominio.peliculas.excepcion.ExcepcionCamposVacios
 import java.time.LocalDateTime
 
 data class Pelicula(
-    val id: Int,
-    var lenguaje: String?,
-    var titulo: String?,
-    var imagenUrl: String?,
-    var votacion: Float?,
-    var fechaLanzamiento: String?,
-    var descripcion: String?,
-    var diaRegistro: Int = LocalDateTime.now().dayOfWeek.value,
-) {
+
+    var lenguaje: String,
+    var titulo: String,
+    var imagenUrl: String,
+    var votacion: Float,
+    var fechaLanzamiento: String,
+    var descripcion: String,
+
+    ) {
     init {
-        if (validacionNulo()) throw ExcepcionNulo()
+        if (validacionVacio()) throw ExcepcionCamposVacios()
     }
 
-    //  todo val validacionArgumentos : ArrayList<String?> = arrayListOf( original_language, original_title,poster_path,release_date,overview)
+    var id = 0
+    var diaRegistro: Int = LocalDateTime.now().dayOfWeek.value
 
-    private fun validacionNulo(): Boolean =
-        votacion == null || lenguaje.isNullOrEmpty() || titulo.isNullOrEmpty() ||
-                imagenUrl.isNullOrEmpty() || fechaLanzamiento.isNullOrEmpty() ||
-                descripcion.isNullOrEmpty()
+    //val  validacionVacios = arrayListOf(id,lenguaje,titulo,imagenUrl,votacion,fechaLanzamiento,descripcion,diaRegistro)
+
+    private fun validacionVacio() = lenguaje.isEmpty() || imagenUrl.isEmpty() || votacion.toString().isEmpty()
+            || fechaLanzamiento.isEmpty() || descripcion.isEmpty()
 
 }

@@ -1,21 +1,15 @@
 package com.androidbase.listapeliculas.vista.pageobject
 
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ScrollView
 import androidx.test.espresso.Espresso
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.androidbase.R
 import com.androidbase.listapeliculas.vista.actividaddetallepeliculas.ActividadDetallePelicula
-import org.hamcrest.Description
-import org.hamcrest.Matcher
 import org.hamcrest.Matchers
-import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
 
 open class ActividadListaPeliculasPageObject {
@@ -109,39 +103,15 @@ open class ActividadListaPeliculasPageObject {
     }
 
     fun clickBotonVerDetalles(): ActividadListaPeliculasPageObject {
+        Espresso.onView(Matchers.allOf(withId(R.id.listaPeliculasRecyclerview)))
+        // .perform(actionOnItem(hasDescendant(withText(containsString("Ver"))), click()))
 
-        Espresso.onView(
-            Matchers.allOf(withId(R.id.btn_ver_detalle),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.listaPeliculasRecyclerview),
-                        0),
-                    7)))
-            .perform(scrollTo(), click())
         return this
     }
 
     fun verificarLanzamientoActividadDetalle(): ActividadListaPeliculasPageObject {
         intended(hasComponent(ActividadDetallePelicula::class.java.name))
         return this
-    }
-
-    private fun childAtPosition(
-        parentMatcher: Matcher<View>, position: Int,
-    ): Matcher<View> {
-
-        return object : TypeSafeMatcher<View>() {
-            override fun describeTo(description: Description) {
-                description.appendText("Child at position $position in parent ")
-                parentMatcher.describeTo(description)
-            }
-
-            public override fun matchesSafely(view: View): Boolean {
-                val parent = view.parent
-                return parent is ViewGroup && parentMatcher.matches(parent)
-                        && view == parent.getChildAt(position)
-            }
-        }
     }
 
 }

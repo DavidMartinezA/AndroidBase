@@ -6,6 +6,7 @@ import com.androidbase.listapeliculas.vista.actividaddetallepeliculas.pageobject
 import com.androidbase.listapeliculas.vista.actividadlistapeliculas.ActividadListaPeliculas
 import com.androidbase.listapeliculas.vista.pageobject.ActividadListaPeliculasPageObject
 import org.junit.Rule
+import org.junit.Test
 
 class ActividadDetallePeliculaTest {
 
@@ -16,7 +17,7 @@ class ActividadDetallePeliculaTest {
     private val actividadListaPeliculasDetallePageObject = ActividadListaPeliculasDetallePageObject()
     private val actividadListaPeliculasPageObject = ActividadListaPeliculasPageObject()
 
-/*    @Test
+    @Test
     fun mostrarListaPeliculas_parametrosCorrectos_ListaPeliculas() {
 
         //Given
@@ -36,7 +37,6 @@ class ActividadDetallePeliculaTest {
             .existeSipnosisPelicula()
 
         mActivityTestRule.scenario.close()
-    }*/
-
+    }
 
 }

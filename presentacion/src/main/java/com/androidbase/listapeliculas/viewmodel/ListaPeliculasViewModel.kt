@@ -2,7 +2,9 @@ package com.androidbase.listapeliculas.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dominio.peliculas.excepcion.ExcepcionCamposVacios
 import com.dominio.peliculas.modelo.Pelicula
+import com.infraestructura.accesodatos.accesodatosapi.excepcion.ExcepcionErrorRetrofit
 import com.infraestructura.accesodatos.compartido.repositorio.ConsultaPeliculasProxy
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,10 +25,13 @@ class ListaPeliculasViewModel @Inject constructor(private val repositorioConsult
         try {
             val lista = repositorioConsulta.obtenerPaginaPeliculas()
             cambioUi.value = lista
-        } catch (excepcion: Exception) {
-            listaUi.value = "No se Puede Mostrar La Lista"
-
-        }
+        } catch (excepcion: ExcepcionCamposVacios) {
+            excepcion.message.let { listaUi.value = excepcion.message.toString() }
+        } catch (excepcion: ExcepcionErrorRetrofit) {
+            excepcion.message.let { listaUi.value = excepcion.message.toString() }
+        } /*catch (excepcion: Exception) {
+            listaUi.value = "Error No Es Posible Mostrar La Informacion"
+        }*/
     }
 
 }

@@ -23,15 +23,17 @@ class TraductorPagina {
         val listaDominio = ArrayList<Pelicula>()
         listaEntidadBaseDatos.map {
             val peliculaDominio = Pelicula(
-                it.id,
+
                 it.lenguaje,
                 it.titulo,
                 it.imagen,
                 it.votacion,
                 it.fechaLanzamiento,
                 it.descripcion,
-                it.diaRegistro
-            )
+
+                )
+            it.id
+            it.diaRegistro
             listaDominio.add(peliculaDominio)
         }
         return listaDominio

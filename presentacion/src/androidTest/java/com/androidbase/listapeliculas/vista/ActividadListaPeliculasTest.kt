@@ -7,6 +7,7 @@ import com.androidbase.listapeliculas.vista.pageobject.ActividadListaPeliculasPa
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 
 class ActividadListaPeliculasTest {
 
@@ -25,7 +26,7 @@ class ActividadListaPeliculasTest {
         Intents.release()
     }
 
-/*    @Test
+    @Test
     fun mostrarListaPeliculas_parametrosCorrectos_ListaPeliculas() {
 
         //Given
@@ -50,6 +51,6 @@ class ActividadListaPeliculasTest {
         //Then
         actividadListaPeliculasPageObject.verificarLanzamientoActividadDetalle()
         mActivityTestRule.scenario.close()
-    }*/
+    }
 
 }

@@ -8,11 +8,11 @@ class EntidadBaseDatosPelicula(
 
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var lenguaje: String?,
-    var titulo: String?,
-    var imagen: String?,
-    var votacion: Float?,
-    var fechaLanzamiento: String?,
-    var descripcion: String?,
+    var lenguaje: String,
+    var titulo: String,
+    var imagen: String,
+    var votacion: Float,
+    var fechaLanzamiento: String,
+    var descripcion: String,
     var diaRegistro: Int,
 )
