@@ -92,12 +92,11 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.4.0'
-
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
 }
 
 // tarea para los reportes de analisis de codigo
-task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTest',
-                                                      ':infraestructura:connectedAndroidTest']) {
+task jacocoTestReport(type: JacocoReport, dependsOn: [':dominio:testDebugUnitTest',':infraestructura:connectedAndroidTest']) {
 
     def moduloDominio = project(':dominio')
     def moduloInfraestructura = project(':infraestructura')
