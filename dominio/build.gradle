@@ -40,17 +40,9 @@ dependencies {
     def versionCoroutines = "1.6.1"
     def versionMockito = "4.5.1"
     def versionJunit = "4.13.2"
-    def versionHilt = "2.41"
 
     testImplementation "junit:junit:$versionJunit"
     testImplementation "org.mockito:mockito-core:$versionMockito"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versionCoroutines"
-
-    //Inyeccion dependencias
-    implementation"com.google.dagger:hilt-android:$versionHilt"
-    kapt  "com.google.dagger:hilt-android-compiler:$versionHilt"
-
-
-
 
 }
