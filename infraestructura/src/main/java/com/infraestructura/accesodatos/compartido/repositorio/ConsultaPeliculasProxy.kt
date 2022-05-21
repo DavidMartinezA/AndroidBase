@@ -2,7 +2,7 @@ package com.infraestructura.accesodatos.compartido.repositorio
 
 import com.dominio.peliculas.modelo.Pelicula
 import com.dominio.peliculas.repositorio.RepositorioPelicula
-import com.infraestructura.accesodatos.accesodatosapi.excepcion.ExcepcionErrorRetrofit
+import com.infraestructura.accesodatos.accesodatosapi.excepcion.ExcepcionErrorConsultaInformacionPeliculas
 import javax.inject.Inject
 
 class ConsultaPeliculasProxy @Inject constructor(
@@ -15,7 +15,7 @@ class ConsultaPeliculasProxy @Inject constructor(
 
     override suspend fun obtenerPaginaPeliculas(): List<Pelicula> {
         return if (repositorioConsultaPeliculas.obtenerPaginaPeliculas().isNullOrEmpty()) {
-            throw ExcepcionErrorRetrofit()
+            throw ExcepcionErrorConsultaInformacionPeliculas()
         } else {
             repositorioConsultaPeliculas.obtenerPaginaPeliculas()
         }

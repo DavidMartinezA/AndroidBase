@@ -34,6 +34,7 @@ class RepositorioConsultaPeliculas @Inject constructor(
                 traductorPagina.desdeBaseDatosADominio(peliculasDao.obtener())
             }
             val paginaPeliculasApi = traductorApi.desdeApiADominio(peliculaApi)
+            peliculasDao.borrar()
             paginaPeliculasApi.forEach {
                 guardarPaginaPeliculas(it)
             }
