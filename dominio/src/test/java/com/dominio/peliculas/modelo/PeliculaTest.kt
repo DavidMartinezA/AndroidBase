@@ -1,134 +1,154 @@
 package com.dominio.peliculas.modelo
 
 import com.dominio.peliculas.excepcion.ExcepcionCamposVacios
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThrows
+import org.junit.Assert.*
 import org.junit.Test
 
 
 class PeliculaTest {
 
-    private var id: Int = 1
-    private var idioma: String = "español"
-    private var titulo: String = "Encanto"
-    private var imagenUrl: String = "url"
-    private var calificacion: Float = 8.55F
-    private var fechaLanzamiento: String = "2022"
-    private var descripcion: String = "pelicula colombiana"
-
-
     @Test
-    fun init_validacionIdimaParametroCorrecto_idiomaPeliculas() {
+    fun init_validacionIdParametroCorrecto_idPelicula() {
 
         //Arrange
+        val pelicula = ConstructorPeliculasPruebas()
+            .build()
         //Act
-        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
-
         //Assert
-        assertEquals(pelicula.lenguaje, idioma)
-    }
-
-    @Test
-    fun init_validacionTituloParametroCorrecto_tituloPeliculas() {
-
-        //Arrange
-        //Act
-        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
-
-        //Assert
-        assertEquals(pelicula.titulo, titulo)
-    }
-
-    @Test
-    fun init_validacionImagenUrlParametroCorrecto_imagenUrlPeliculas() {
-
-        //Arrange
-        //Act
-        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
-
-        //Assert
-        assertEquals(pelicula.imagenUrl, imagenUrl)
+        assertEquals(0, pelicula.id)
 
     }
 
     @Test
-    fun init_validacionCalificacionParametroCorrecto_calificacionPeliculas() {
+    fun init_validacionLenguajeParametroCorrecto_lenguajePelicula() {
 
         //Arrange
+        val pelicula = ConstructorPeliculasPruebas()
+            .conLenguaje("Español")
+            .build()
         //Act
-        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
-
         //Assert
-        assertEquals(pelicula.votacion, calificacion)
+        assertEquals("Español", pelicula.lenguaje)
+
     }
 
     @Test
-    fun init_validacionFechaLanzamientoParametroCorrecto_fechaLanzamientoPeliculas() {
+    fun init_validacionTituloParametroCorrecto_tituloPelicula() {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        val pelicula = ConstructorPeliculasPruebas()
+            .conTitulo("encanto")
+            .build()
 
         //Assert
-        assertEquals(pelicula.fechaLanzamiento, fechaLanzamiento)
+        assertEquals("encanto", pelicula.titulo)
     }
 
     @Test
-    fun init_validacionDescripcionParametroCorrecto_descripcionPeliculas() {
+    fun init_validacionImagenUrlParametroCorrecto_imagenUrlPelicula() {
 
         //Arrange
         //Act
-        val pelicula = Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+        val pelicula = ConstructorPeliculasPruebas()
+            .conImagen("Url de Imagen")
+            .build()
 
         //Assert
-        assertEquals(pelicula.descripcion, descripcion)
+        assertEquals("Url de Imagen", pelicula.imagenUrl)
+
     }
 
     @Test
-    fun init_validacionoParametroIdiomaNulo_lanzarExcepcion() {
+    fun init_validacionVotacionParametroCorrecto_calificacionPelicula() {
 
         //Arrange
-        idioma = ""
+        //Act
+        val pelicula = ConstructorPeliculasPruebas()
+            .conVotacion(8.6F)
+            .build()
+
+        //Assert
+        assertTrue(pelicula.votacion == 8.6F)
+    }
+
+    @Test
+    fun init_validacionFechaLanzamientoParametroCorrecto_fechaLanzamientoPelicula() {
+
+        //Arrange
+        //Act
+        val pelicula = ConstructorPeliculasPruebas()
+            .conFechaLanzamiento("2022")
+            .build()
+
+        //Assert
+        assertFalse(pelicula.fechaLanzamiento.isEmpty())
+    }
+
+    @Test
+    fun init_validacionDescripcionParametroCorrecto_descripcionPelicula() {
+
+        //Arrange
+        //Act
+        val pelicula = ConstructorPeliculasPruebas()
+            .conDescripcion("Pelicula Colombiana")
+            .build()
+
+        //Assert
+        assertSame("Pelicula Colombiana", pelicula.descripcion)
+    }
+
+    @Test
+    fun init_validacionoParametroLenguajeVacio_lanzarExcepcion() {
+
+        //Arrange
         //Act
         //Assert
         assertThrows(ExcepcionCamposVacios::class.java) {
-            Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            ConstructorPeliculasPruebas()
+                .conLenguaje("")
+                .build()
         }
     }
 
     @Test
-    fun init_validacionParametroImagenUrlNulo_lanzarExcepcion() {
+    fun init_validacionParametroImagenUrlVacio_lanzarExcepcion() {
 
         //Arrange
-        imagenUrl = ""
         //Act
         //Assert
         assertThrows(ExcepcionCamposVacios::class.java) {
-            Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            ConstructorPeliculasPruebas()
+                .conImagen("")
+                .build()
+        }
+    }
+
+
+    @Test
+    fun init_validacionParametroFechaLanzamientoVacia_lanzarExcepcion() {
+
+        //Arrange
+        //Act
+        //Assert
+        assertThrows(ExcepcionCamposVacios::class.java) {
+            ConstructorPeliculasPruebas()
+                .conFechaLanzamiento("")
+                .build()
         }
     }
 
     @Test
-    fun init_validacionParametroFechaLanzamiento_lanzarExcepcion() {
+    fun init_validacionParametroDescripcionVacia_lanzarExcepcion() {
 
         //Arrange
-        fechaLanzamiento = ""
         //Act
         //Assert
         assertThrows(ExcepcionCamposVacios::class.java) {
-            Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
+            ConstructorPeliculasPruebas()
+                .conDescripcion("")
+                .build()
         }
     }
 
-    @Test
-    fun init_validacionParametroDescripcionNulo_lanzarExcepcion() {
-
-        //Arrange
-        descripcion = ""
-        //Act
-        //Assert
-        assertThrows(ExcepcionCamposVacios::class.java) {
-            Pelicula(idioma, titulo, imagenUrl, calificacion, fechaLanzamiento, descripcion)
-        }
-    }
 }
