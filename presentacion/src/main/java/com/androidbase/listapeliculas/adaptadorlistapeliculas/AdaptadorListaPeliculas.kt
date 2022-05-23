@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.androidbase.R
@@ -59,8 +58,7 @@ class AdaptadorListaPeliculas(private var resultadoPeliculas: List<Pelicula>) :
                 intent.putExtra(DESCRIPCION, pelicula.descripcion)
                 view.context.startActivity(intent)
 
-                val barraProgreso = view.findViewById<ProgressBar>(R.id.barraProgreso)
-                barraProgreso.visibility = View.GONE
+
             }
         }
     }

@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dominio.peliculas.excepcion.ExcepcionCamposVacios
 import com.dominio.peliculas.modelo.Pelicula
-import com.infraestructura.accesodatos.accesodatosapi.excepcion.ExcepcionErrorConsultaInformacionPeliculas
-import com.infraestructura.accesodatos.compartido.repositorio.ConsultaPeliculasProxy
+import com.infraestructura.accesodatos.excepcion.ExcepcionErrorConsultaInformacionPeliculas
+import com.infraestructura.accesodatos.repositorio.ConsultaPeliculasProxy
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,8 +17,8 @@ class ListaPeliculasViewModel @Inject constructor(private val consultaPeliculas:
 
     private val cambioUi: MutableStateFlow<List<Pelicula>> = MutableStateFlow(emptyList())
     var listaPeliculas: StateFlow<List<Pelicula>> = cambioUi
-    private val listaUi: MutableStateFlow<String> = MutableStateFlow("")
-    var listavacia: StateFlow<String> = listaUi
+    private val mensageExcepciones: MutableStateFlow<String> = MutableStateFlow("")
+    var excepcionesGeneradas: StateFlow<String> = mensageExcepciones
 
     fun mostrarListaPeliculas() = viewModelScope.launch {
 
@@ -26,11 +26,11 @@ class ListaPeliculasViewModel @Inject constructor(private val consultaPeliculas:
             val lista = consultaPeliculas.obtenerPaginaPeliculas()
             cambioUi.value = lista
         } catch (excepcion: ExcepcionCamposVacios) {
-            excepcion.message.let { listaUi.value = excepcion.message.toString() }
+            excepcion.message.let { mensageExcepciones.value = it.toString() } // validar el if para mostrar mensaje aqui
         } catch (excepcion: ExcepcionErrorConsultaInformacionPeliculas) {
-            excepcion.message.let { listaUi.value = excepcion.message.toString() }
+            excepcion.message.let { mensageExcepciones.value = it.toString() }
         } catch (excepcion: Exception) {
-            listaUi.value = "Error No Es Posible Mostrar La Informacion"
+            mensageExcepciones.value = "Error No Es Posible Mostrar La Informacion"
         }
     }
 

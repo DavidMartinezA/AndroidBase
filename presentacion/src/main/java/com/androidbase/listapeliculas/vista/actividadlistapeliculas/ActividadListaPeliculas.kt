@@ -26,7 +26,7 @@ class ActividadListaPeliculas : AppCompatActivity() {
         setContentView(binding.root)
 
         mostrarListaPeliculas()
-        generarDialogoExcepciones()
+        generarSuscripcionDialogoExcepciones()
     }
 
     private fun iniciarRecyclerView(listaPeliculas: List<Pelicula>) {
@@ -46,10 +46,10 @@ class ActividadListaPeliculas : AppCompatActivity() {
         }
     }
 
-    private fun generarDialogoExcepciones() {
+    private fun generarSuscripcionDialogoExcepciones() {
 
         lifecycleScope.launch {
-            listaPeliculasViewModel.listavacia.collect {
+            listaPeliculasViewModel.excepcionesGeneradas.collect {
                 if (it.isNotEmpty()) {
                     val dialogoExcepciones = AlertDialog.Builder(this@ActividadListaPeliculas)
                     dialogoExcepciones.setTitle(getString(R.string.app_name))
