@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.androidbase.R
 import com.dominio.peliculas.repositorio.RepositorioPelicula
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
-import com.infraestructura.accesodatos.compartido.repositorio.ConsultaPeliculasProxy
+import com.infraestructura.accesodatos.repositorio.ConsultaPeliculasProxy
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

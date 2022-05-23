@@ -6,9 +6,10 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.dominio.peliculas.modelo.Pelicula
 import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
-import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.TraductorPagina
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
-import com.infraestructura.accesodatos.compartido.repositorio.ConsultaPeliculasProxy
+import com.infraestructura.accesodatos.anticorrupcion.TraductorPelicula
+import com.infraestructura.accesodatos.repositorio.ConsultaPeliculasProxy
+import com.infraestructura.accesodatos.repositorio.RepositorioConsultaPeliculas
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
@@ -30,8 +31,9 @@ class RepositorioConsultaProxyTest {
     private lateinit var servicioFakeWeb: MockWebServer
     private lateinit var baseDatosEntidades: BaseDatosPaginaPeliculas
     private lateinit var consultaPeliculasProxy: ConsultaPeliculasProxy
+    private lateinit var consultaPeliculas: RepositorioConsultaPeliculas
     private lateinit var servicioApi: ServicioApi
-    private val pelicula: Pelicula = Pelicula(1, "español", "Encanto", "url", 8.55F, "2022", "pelicula colombiana")
+    private var pelicula = Pelicula("Es", "Encanto", "Url", 0.0F, "2022", "PELICULA COLOMBIANA")
     private var resultadoPeliculas: ArrayList<Pelicula> = arrayListOf(pelicula)
 
 
@@ -52,7 +54,8 @@ class RepositorioConsultaProxyTest {
         val baseDatosPaginaPeliculas = baseDatosEntidades
         servicioApi = retrofit.create(ServicioApi::class.java)
 
-        consultaPeliculasProxy = ConsultaPeliculasProxy(baseDatosPaginaPeliculas, servicioApi)
+        consultaPeliculas = RepositorioConsultaPeliculas(baseDatosPaginaPeliculas, servicioApi)
+        consultaPeliculasProxy = ConsultaPeliculasProxy(consultaPeliculas)
 
     }
 
@@ -87,7 +90,7 @@ class RepositorioConsultaProxyTest {
     fun obtenerPaginaPeliculas_paginaPeliculaCorrecta_paginaPelicula() = runTest {
 
         //Arrange
-        resultadoPeliculas.forEach { baseDatosEntidades.peliculasDao().insertar(TraductorPagina().desdeDominioABaseDatos(it)) }
+        resultadoPeliculas.forEach { baseDatosEntidades.peliculasDao().insertar(TraductorPelicula().desdeDominioABaseDatos(it)) }
         //Act
         val respuesta = consultaPeliculasProxy.obtenerPaginaPeliculas()
         //Assert

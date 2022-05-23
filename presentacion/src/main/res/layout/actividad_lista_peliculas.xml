@@ -5,11 +5,7 @@
         tools:context=".listapeliculas.vista.actividadlistapeliculas.ActividadListaPeliculas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_fondo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/color_fondo">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos.EntidadBaseDatosPelicula
+import com.infraestructura.accesodatos.modelos.entidadbasedatos.EntidadBaseDatosPelicula
 
 @Dao
 interface PeliculasDao {
