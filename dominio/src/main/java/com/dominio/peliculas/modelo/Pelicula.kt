@@ -13,16 +13,15 @@ data class Pelicula(
     var descripcion: String,
 
     ) {
+    var id = 0
+    var diaRegistro: Int = LocalDateTime.now().dayOfWeek.value
+
+    val validacionVacios = arrayListOf(lenguaje, titulo, imagenUrl, votacion.toString(), fechaLanzamiento, descripcion)
+
     init {
         if (validacionVacio()) throw ExcepcionCamposVacios()
     }
 
-    var id = 0
-    var diaRegistro: Int = LocalDateTime.now().dayOfWeek.value
-
-    //val  validacionVacios = arrayListOf(id,lenguaje,titulo,imagenUrl,votacion,fechaLanzamiento,descripcion,diaRegistro)
-
-    private fun validacionVacio() = lenguaje.isEmpty() || imagenUrl.isEmpty() || votacion.toString().isEmpty()
-            || fechaLanzamiento.isEmpty() || descripcion.isEmpty()
+    private fun validacionVacio() = validacionVacios.any { it.isEmpty() }
 
 }
