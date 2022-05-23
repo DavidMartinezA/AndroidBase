@@ -1,4 +1,4 @@
-package com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos
+package com.infraestructura.accesodatos.modelos.entidadbasedatos
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

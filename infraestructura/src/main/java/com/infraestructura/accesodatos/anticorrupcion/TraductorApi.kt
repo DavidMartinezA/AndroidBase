@@ -1,7 +1,7 @@
-package com.infraestructura.accesodatos.accesodatosapi.anticorrupcion
+package com.infraestructura.accesodatos.anticorrupcion
 
 import com.dominio.peliculas.modelo.Pelicula
-import com.infraestructura.accesodatos.accesodatosapi.dto.ListaResultadosDto
+import com.infraestructura.accesodatos.modelos.dto.ListaResultadosDto
 
 class TraductorApi {
 

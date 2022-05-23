@@ -1,8 +1,8 @@
-package com.infraestructura.accesodatos.compartido.repositorio
+package com.infraestructura.accesodatos.repositorio
 
 import com.dominio.peliculas.modelo.Pelicula
 import com.dominio.peliculas.repositorio.RepositorioPelicula
-import com.infraestructura.accesodatos.accesodatosapi.excepcion.ExcepcionErrorConsultaInformacionPeliculas
+import com.infraestructura.accesodatos.excepcion.ExcepcionErrorConsultaInformacionPeliculas
 import javax.inject.Inject
 
 class ConsultaPeliculasProxy @Inject constructor(
@@ -14,10 +14,11 @@ class ConsultaPeliculasProxy @Inject constructor(
     }
 
     override suspend fun obtenerPaginaPeliculas(): List<Pelicula> {
-        return if (repositorioConsultaPeliculas.obtenerPaginaPeliculas().isNullOrEmpty()) {
+        val respuesta = repositorioConsultaPeliculas.obtenerPaginaPeliculas()
+        return if (respuesta.isNullOrEmpty()) {
             throw ExcepcionErrorConsultaInformacionPeliculas()
         } else {
-            repositorioConsultaPeliculas.obtenerPaginaPeliculas()
+            respuesta
         }
     }
 

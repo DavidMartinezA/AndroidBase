@@ -1,9 +1,9 @@
-package com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion
+package com.infraestructura.accesodatos.anticorrupcion
 
 import com.dominio.peliculas.modelo.Pelicula
-import com.infraestructura.accesodatos.accesodatoslocal.entidadbasedatos.EntidadBaseDatosPelicula
+import com.infraestructura.accesodatos.modelos.entidadbasedatos.EntidadBaseDatosPelicula
 
-class TraductorPagina {
+class TraductorPelicula {
 
     fun desdeDominioABaseDatos(pelicula: Pelicula): EntidadBaseDatosPelicula {
         return EntidadBaseDatosPelicula(

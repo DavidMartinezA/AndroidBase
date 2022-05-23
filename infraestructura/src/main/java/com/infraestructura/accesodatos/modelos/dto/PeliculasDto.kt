@@ -1,4 +1,4 @@
-package com.infraestructura.accesodatos.accesodatosapi.dto
+package com.infraestructura.accesodatos.modelos.dto
 
 import com.google.gson.annotations.SerializedName
 

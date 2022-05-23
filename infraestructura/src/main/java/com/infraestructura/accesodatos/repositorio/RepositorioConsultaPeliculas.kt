@@ -1,11 +1,11 @@
-package com.infraestructura.accesodatos.compartido.repositorio
+package com.infraestructura.accesodatos.repositorio
 
 import com.dominio.peliculas.modelo.Pelicula
 import com.dominio.peliculas.repositorio.RepositorioPelicula
-import com.infraestructura.accesodatos.accesodatosapi.anticorrupcion.TraductorApi
 import com.infraestructura.accesodatos.accesodatosapi.servicioapi.ServicioApi
-import com.infraestructura.accesodatos.accesodatoslocal.anticorrupcion.TraductorPagina
 import com.infraestructura.accesodatos.accesodatoslocal.basedatos.BaseDatosPaginaPeliculas
+import com.infraestructura.accesodatos.anticorrupcion.TraductorApi
+import com.infraestructura.accesodatos.anticorrupcion.TraductorPelicula
 import java.time.LocalDateTime
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ class RepositorioConsultaPeliculas @Inject constructor(
 ) : RepositorioPelicula {
 
     private val peliculasDao = baseDatosPaginaPeliculas.peliculasDao()
-    private val traductorPagina = TraductorPagina()
+    private val traductorPagina = TraductorPelicula()
     private val traductorApi = TraductorApi()
 
     override suspend fun guardarPaginaPeliculas(pelicula: Pelicula) {

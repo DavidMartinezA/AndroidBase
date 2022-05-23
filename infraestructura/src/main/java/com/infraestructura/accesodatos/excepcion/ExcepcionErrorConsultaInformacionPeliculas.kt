@@ -1,4 +1,4 @@
-package com.infraestructura.accesodatos.accesodatosapi.excepcion
+package com.infraestructura.accesodatos.excepcion
 
 import com.dominio.compartido.excepciones.AndroidBaseExcepcion
 
